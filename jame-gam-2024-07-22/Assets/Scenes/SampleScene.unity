@@ -2378,29 +2378,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2633504802801244163, guid: 03bc1ed4a886c414285f882f942217ca,
         type: 3}
-      propertyPath: area
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2633504802801244163, guid: 03bc1ed4a886c414285f882f942217ca,
-        type: 3}
-      propertyPath: maxHp
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2633504802801244163, guid: 03bc1ed4a886c414285f882f942217ca,
-        type: 3}
       propertyPath: skillIndicator
       value: 
       objectReference: {fileID: 1446500445}
-    - target: {fileID: 2633504802801244163, guid: 03bc1ed4a886c414285f882f942217ca,
-        type: 3}
-      propertyPath: mouseMask.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 2633504802801244163, guid: 03bc1ed4a886c414285f882f942217ca,
-        type: 3}
-      propertyPath: skillMask.m_Bits
-      value: 456
-      objectReference: {fileID: 0}
     - target: {fileID: 7562847330576848105, guid: 03bc1ed4a886c414285f882f942217ca,
         type: 3}
       propertyPath: m_Name

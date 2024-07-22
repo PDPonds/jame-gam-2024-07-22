@@ -182,7 +182,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &2633504802801244163
 MonoBehaviour:
@@ -198,12 +198,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveInput: {x: 0, y: 0}
   mousePos: {x: 0, y: 0}
-  maxHp: 0
-  curHp: 0
+  maxHp: 5
   mouseMask:
     serializedVersion: 2
-    m_Bits: 456
+    m_Bits: 512
   moveSpeed: 4
+  skillIndicator: {fileID: 0}
+  skillMask:
+    serializedVersion: 2
+    m_Bits: 904
+  area: 0.5
 --- !u!114 &6772890546153655182
 MonoBehaviour:
   m_ObjectHideFlags: 0
