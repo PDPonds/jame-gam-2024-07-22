@@ -200,6 +200,9 @@ MonoBehaviour:
   mousePos: {x: 0, y: 0}
   maxHp: 0
   curHp: 0
+  mouseMask:
+    serializedVersion: 2
+    m_Bits: 456
   moveSpeed: 4
 --- !u!114 &6772890546153655182
 MonoBehaviour:
