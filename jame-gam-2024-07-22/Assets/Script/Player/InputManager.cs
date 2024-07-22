@@ -15,6 +15,10 @@ public class InputManager : MonoBehaviour
 
             action.PlayerInput.MousePos.performed += i => PlayerManager.Instance.mousePos = i.ReadValue<Vector2>();
 
+            action.PlayerInput.RepairMagic.performed += i => PlayerManager.Instance.RepairObject();
+
+            action.PlayerInput.DecayMagic.performed += i => PlayerManager.Instance.DecayObject();
+
         }
 
         action.Enable();
