@@ -6,10 +6,14 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 {
     #region Ref
     Rigidbody rb;
+    Animator anim;
+    SpriteRenderer spriteRenderer;
     #endregion
 
     [HideInInspector] public Vector2 moveInput;
     [HideInInspector] public Vector2 mousePos;
+
+    [SerializeField] Transform visaul;
 
     [Header("===== HP =====")]
     [SerializeField] int maxHp;
@@ -41,6 +45,8 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        anim = visaul.GetComponent<Animator>();
+        spriteRenderer = visaul.GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -67,11 +73,24 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
         moveDir.y = 0;
         moveDir = moveDir * moveSpeed;
 
-
         rb.velocity = new Vector3(moveDir.x, rb.velocity.y, moveDir.z);
+
+        MoveAnim();
     }
 
-
+    void MoveAnim()
+    {
+        if (moveInput != Vector2.zero)
+        {
+            anim.SetBool("isWalk", true);
+            if (moveInput.x > 0) spriteRenderer.flipX = true;
+            else spriteRenderer.flipX = false;
+        }
+        else
+        {
+            anim.SetBool("isWalk", false);
+        }
+    }
 
     #endregion
 

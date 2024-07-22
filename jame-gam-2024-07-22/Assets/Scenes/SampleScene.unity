@@ -2627,6 +2627,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkillIndicator
       objectReference: {fileID: 0}
+    - target: {fileID: 3065664507465603056, guid: e74e152abd3c6e04bb066176b650ceb4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8496611982990215264, guid: e74e152abd3c6e04bb066176b650ceb4,
         type: 3}
       propertyPath: m_LocalPosition.x
