@@ -26,7 +26,10 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     [Header("- Indicator")]
     [SerializeField] Transform skillIndicator;
     [Header("- Detail")]
+    [SerializeField] LayerMask skillMask;
     [SerializeField] float area;
+
+    List<IDamageable> allIDamageable = new List<IDamageable>();
 
     private void Awake()
     {
@@ -152,8 +155,57 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
         skillIndicator.localScale = Vector3.one * (area * 2f);
     }
 
-    #endregion
+    Collider[] GetColliderInArea()
+    {
+        Collider[] col = Physics.OverlapSphere(skillIndicator.position, area, skillMask);
+        return col;
+    }
 
+    List<IDamageable> GetAllIDamageable()
+    {
+        List<IDamageable> damageables = new List<IDamageable>();
+        Collider[] cols = GetColliderInArea();
+        if (cols.Length > 0)
+        {
+            for (int i = 0; i < cols.Length; i++)
+            {
+                if (cols[i].TryGetComponent<IDamageable>(out IDamageable damageable))
+                {
+                    damageables.Add(damageable);
+                }
+            }
+        }
+
+        return damageables;
+    }
+
+    public void DecayObject()
+    {
+        allIDamageable = GetAllIDamageable();
+        if (allIDamageable.Count > 0)
+        {
+            for (int i = 0; i < allIDamageable.Count; i++)
+            {
+                IDamageable iD = allIDamageable[i];
+                iD.Hit();
+            }
+        }
+    }
+
+    public void RepairObject()
+    {
+        allIDamageable = GetAllIDamageable();
+        if (allIDamageable.Count > 0)
+        {
+            for (int i = 0; i < allIDamageable.Count; i++)
+            {
+                IDamageable iD = allIDamageable[i];
+                iD.Heal();
+            }
+        }
+    }
+
+    #endregion
 
     private void OnDrawGizmos()
     {
