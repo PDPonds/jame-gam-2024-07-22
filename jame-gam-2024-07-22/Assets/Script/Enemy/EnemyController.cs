@@ -18,15 +18,22 @@ public class EnemyController : MonoBehaviour, IDamageable
     #endregion
 
     [SerializeField] Transform visual;
+    int curHp;
 
     [Header("===== Enemy ======")]
     [SerializeField] Enemy enemy;
     [SerializeField] EnemyBehavior behavior;
 
-    [Header("===== Range Attack ======")]
+    [Header("===== Attack ======")]
+    [SerializeField] LayerMask playerMask;
+    [Header("- Range Attack")]
     [SerializeField] Transform spawnSkillPoint;
     [SerializeField] Transform rangeSkillIndicator;
-    int curHp;
+
+    [Header("- Around User Attack")]
+    [SerializeField] Transform aroundUserSkillIndicator;
+
+    bool attackAlready;
 
     AttackType curAttackType;
 
@@ -61,6 +68,7 @@ public class EnemyController : MonoBehaviour, IDamageable
                 break;
             case EnemyBehavior.Chase:
 
+                attackAlready = false;
                 SetAttackType();
 
                 break;
@@ -221,18 +229,20 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     public void Attack()
     {
-        switch (curAttackType.type)
+        if (!attackAlready)
         {
-            case ATKType.Range:
-                InstanceRangeSkill();
-                SwithBehavoir(EnemyBehavior.Chase);
-                break;
-            case ATKType.AroundUser:
-                break;
-            case ATKType.RandomArea:
-                break;
+            switch (curAttackType.type)
+            {
+                case ATKType.Range:
+                    StartCoroutine(SpawnSkill(() => InstanceRangeSkill()));
+                    break;
+                case ATKType.AroundUser:
+                    StartCoroutine(SpawnSkill(() => AttactPlayerAroundUser()));
+                    break;
+                case ATKType.RandomArea:
+                    break;
+            }
         }
-
     }
 
     public void ShowAttackIndicator()
@@ -244,11 +254,18 @@ public class EnemyController : MonoBehaviour, IDamageable
                 rangeSkillIndicator.gameObject.SetActive(true);
                 RangeAttack range = (RangeAttack)curAttackType;
                 float size = range.time * range.speed;
-                Vector3 scale = new Vector3(0, 0, 1) * size;
-                rangeSkillIndicator.localScale = scale;
+                Vector3 rangeScale = new Vector3(0, 0, 1) * size;
+                rangeSkillIndicator.localScale = rangeScale;
 
                 break;
             case ATKType.AroundUser:
+
+                aroundUserSkillIndicator.gameObject.SetActive(true);
+                AroundUserAttack around = (AroundUserAttack)curAttackType;
+                float area = around.area;
+                Vector3 aroundScale = new Vector3(1, 0, 1) * (area * 2);
+                aroundUserSkillIndicator.localScale = aroundScale;
+
                 break;
             case ATKType.RandomArea:
                 break;
@@ -258,6 +275,23 @@ public class EnemyController : MonoBehaviour, IDamageable
     public void HideAttackIndicator()
     {
         rangeSkillIndicator.gameObject.SetActive(false);
+        aroundUserSkillIndicator.gameObject.SetActive(false);
+    }
+
+    IEnumerator SpawnSkill(Action skill)
+    {
+        int count = 0;
+        attackAlready = true;
+        while (count < curAttackType.count)
+        {
+            count++;
+            skill?.Invoke();
+            yield return new WaitForSeconds(curAttackType.delayPerCount);
+        }
+
+        yield return null;
+        SwithBehavoir(EnemyBehavior.Chase);
+
     }
 
     void InstanceRangeSkill()
@@ -265,6 +299,20 @@ public class EnemyController : MonoBehaviour, IDamageable
         GameObject go = Instantiate(curAttackType.skillParticle, spawnSkillPoint.position, Quaternion.identity);
         RangeSkillObject rangeObj = go.GetComponent<RangeSkillObject>();
         rangeObj.Setup(transform.forward, (RangeAttack)curAttackType);
+    }
+
+    void AttactPlayerAroundUser()
+    {
+        AroundUserAttack around = (AroundUserAttack)curAttackType;
+        float area = around.area;
+
+        GameObject particle = Instantiate(around.skillParticle, transform.position, Quaternion.identity);
+
+        Collider[] cols = Physics.OverlapSphere(transform.position, area, playerMask);
+        if (cols.Length > 0)
+        {
+            PlayerManager.Instance.Hit();
+        }
     }
 
     #endregion
