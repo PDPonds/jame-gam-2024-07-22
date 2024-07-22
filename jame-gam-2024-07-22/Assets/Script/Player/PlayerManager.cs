@@ -28,6 +28,13 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     [Header("- Detail")]
     [SerializeField] LayerMask skillMask;
     [SerializeField] float area;
+    [Header("- Repair Skill")]
+    [SerializeField] float maxRepairMana;
+    [SerializeField] float repairManaMul;
+
+    [SerializeField] float useRepairManaMul;
+
+    float curRepairMana;
 
     List<IDamageable> allIDamageable = new List<IDamageable>();
 
@@ -194,15 +201,42 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
     public void RepairObject()
     {
-        allIDamageable = GetAllIDamageable();
-        if (allIDamageable.Count > 0)
+        if (CanUseRepair())
         {
-            for (int i = 0; i < allIDamageable.Count; i++)
+            RemoveRepairMana();
+            allIDamageable = GetAllIDamageable();
+            if (allIDamageable.Count > 0)
             {
-                IDamageable iD = allIDamageable[i];
-                iD.Heal();
+                for (int i = 0; i < allIDamageable.Count; i++)
+                {
+                    IDamageable iD = allIDamageable[i];
+                    iD.Heal();
+                }
             }
         }
+    }
+
+    #endregion
+
+    #region Repair Mana
+
+    public void AddRepairMana()
+    {
+        curRepairMana += repairManaMul;
+        if (curRepairMana >= maxRepairMana)
+        {
+            curRepairMana = maxRepairMana;
+        }
+    }
+
+    public void RemoveRepairMana()
+    {
+        curRepairMana -= useRepairManaMul;
+    }
+
+    public bool CanUseRepair()
+    {
+        return curRepairMana >= useRepairManaMul;
     }
 
     #endregion

@@ -48,6 +48,7 @@ public class GroundObject : MonoBehaviour, IDamageable
         if (IsState(GroundObjectState.Enable))
         {
             curHp--;
+            PlayerManager.Instance.AddRepairMana();
             if (curHp <= 0)
             {
                 Death();
@@ -70,6 +71,9 @@ public class GroundObject : MonoBehaviour, IDamageable
                 visusal.gameObject.SetActive(false);
                 break;
         }
+
+        GameManager.Instance.BrakeNav();
+
     }
 
     public bool IsState(GroundObjectState state)
