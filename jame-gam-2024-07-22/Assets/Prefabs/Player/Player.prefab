@@ -210,7 +210,7 @@ MonoBehaviour:
   area: 0.5
   maxRepairMana: 100
   repairManaMul: 10
-  useRepairManaMul: 20
+  useRepairManaMul: 15
 --- !u!114 &6772890546153655182
 MonoBehaviour:
   m_ObjectHideFlags: 0

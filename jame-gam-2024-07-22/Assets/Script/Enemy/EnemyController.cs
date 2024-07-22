@@ -46,18 +46,19 @@ public class EnemyController : MonoBehaviour, IDamageable
         //anim = visual.GetComponent<Animator>();
     }
 
-    private void Start()
-    {
-        //anim.runtimeAnimatorController = enemy.animOverride;
-        SwithBehavoir(EnemyBehavior.Chase);
-    }
-
     private void Update()
     {
         UpdateBehavoir();
     }
 
     #region Behavior
+
+    public void OnSpawn()
+    {
+        curHp = enemy.maxHp;
+        SwithBehavoir(EnemyBehavior.Spawn);
+        //anim.runtimeAnimatorController = enemy.animOverride;
+    }
 
     public void SwithBehavoir(EnemyBehavior behavior)
     {
@@ -101,6 +102,7 @@ public class EnemyController : MonoBehaviour, IDamageable
                 break;
             case EnemyBehavior.Chase:
 
+                agent.SetDestination(PlayerManager.Instance.transform.position);
                 float dist = Vector3.Distance(transform.position, PlayerManager.Instance.transform.position);
                 float maxDist = GetAttackRange();
                 if (dist <= maxDist)

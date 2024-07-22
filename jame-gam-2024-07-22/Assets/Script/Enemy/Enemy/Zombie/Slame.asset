@@ -18,4 +18,4 @@ MonoBehaviour:
   delayPerCount: 0
   animOverride: {fileID: 0}
   type: 1
-  area: 1
+  area: 0.5
