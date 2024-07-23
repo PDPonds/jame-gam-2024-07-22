@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class PlayerManager : Singleton<PlayerManager>, IDamageable
 {
@@ -27,6 +28,12 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     [Header("===== Move =====")]
     [SerializeField] float moveSpeed;
     Vector3 moveDir;
+
+    [Header("===== Dash =====")]
+    [SerializeField] float dashForce;
+    [SerializeField] float dashDuration;
+    [SerializeField] float dashDelay;
+    float curDashDelay;
 
     [Header("===== Skill =====")]
     [Header("- Indicator")]
@@ -59,6 +66,8 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
         MoveIndicator();
         ScaleIndicator();
+
+        CountDownDelay();
     }
 
     #region Controller
@@ -89,6 +98,64 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
         {
             anim.SetBool("isWalk", false);
         }
+    }
+
+    #endregion
+
+    #region Dash
+
+    public void Dash()
+    {
+        if (curDashDelay <= 0)
+        {
+            StartCoroutine(dash(GetDirToMouse(), dashForce, dashDuration));
+            DashAnimHandle();
+            curDashDelay = dashDelay;
+        }
+    }
+
+    IEnumerator dash(Vector3 dashDir, float dashSpeed, float duration)
+    {
+        float startTime = Time.time;
+        while (Time.time < startTime + duration)
+        {
+            if (dashDir != Vector3.zero)
+            {
+                Vector3 dir = dashDir.normalized;
+
+                rb.AddForce(dir * dashSpeed / 2, ForceMode.Impulse);
+            }
+            else
+            {
+                rb.AddForce(transform.forward * dashSpeed / 2, ForceMode.Impulse);
+            }
+
+            rb.constraints = RigidbodyConstraints.FreezePositionY;
+            rb.freezeRotation = true;
+            yield return null;
+            rb.constraints = RigidbodyConstraints.None;
+            rb.freezeRotation = true;
+        }
+
+        yield return null;
+    }
+
+    void CountDownDelay()
+    {
+        if (curDashDelay > 0)
+        {
+            curDashDelay -= Time.deltaTime;
+            if (curDashDelay <= 0)
+            {
+                curDashDelay = 0;
+            }
+        }
+    }
+
+    void DashAnimHandle()
+    {
+        anim.Play("Dash");
+        FlipSpriteWithMouseDir();
     }
 
     #endregion
@@ -251,7 +318,11 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     void AttackAnimHandle()
     {
         anim.Play("Attack");
+        FlipSpriteWithMouseDir();
+    }
 
+    void FlipSpriteWithMouseDir()
+    {
         Vector3 right = transform.TransformDirection(transform.right);
         Vector3 dir = GetDirToMouse();
         if (Vector3.Dot(right, dir) <= 0)

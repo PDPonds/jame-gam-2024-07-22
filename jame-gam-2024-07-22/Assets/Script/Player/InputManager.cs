@@ -19,6 +19,9 @@ public class InputManager : MonoBehaviour
 
             action.PlayerInput.DecayMagic.performed += i => PlayerManager.Instance.DecayObject();
 
+            action.PlayerInput.Dash.performed += i => PlayerManager.Instance.Dash();
+
+
         }
 
         action.Enable();

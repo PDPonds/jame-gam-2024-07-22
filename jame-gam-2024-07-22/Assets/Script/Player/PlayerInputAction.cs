@@ -62,6 +62,15 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""3560cd55-f8e8-431b-ac1b-34e0123fc704"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,17 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""action"": ""DecayMagic"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df282f9c-0d71-43ad-af39-399639b087a8"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -164,6 +184,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_PlayerInput_MousePos = m_PlayerInput.FindAction("MousePos", throwIfNotFound: true);
         m_PlayerInput_RepairMagic = m_PlayerInput.FindAction("RepairMagic", throwIfNotFound: true);
         m_PlayerInput_DecayMagic = m_PlayerInput.FindAction("DecayMagic", throwIfNotFound: true);
+        m_PlayerInput_Dash = m_PlayerInput.FindAction("Dash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -229,6 +250,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerInput_MousePos;
     private readonly InputAction m_PlayerInput_RepairMagic;
     private readonly InputAction m_PlayerInput_DecayMagic;
+    private readonly InputAction m_PlayerInput_Dash;
     public struct PlayerInputActions
     {
         private @PlayerInputAction m_Wrapper;
@@ -237,6 +259,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         public InputAction @MousePos => m_Wrapper.m_PlayerInput_MousePos;
         public InputAction @RepairMagic => m_Wrapper.m_PlayerInput_RepairMagic;
         public InputAction @DecayMagic => m_Wrapper.m_PlayerInput_DecayMagic;
+        public InputAction @Dash => m_Wrapper.m_PlayerInput_Dash;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -258,6 +281,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @DecayMagic.started += instance.OnDecayMagic;
             @DecayMagic.performed += instance.OnDecayMagic;
             @DecayMagic.canceled += instance.OnDecayMagic;
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
         }
 
         private void UnregisterCallbacks(IPlayerInputActions instance)
@@ -274,6 +300,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @DecayMagic.started -= instance.OnDecayMagic;
             @DecayMagic.performed -= instance.OnDecayMagic;
             @DecayMagic.canceled -= instance.OnDecayMagic;
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
         }
 
         public void RemoveCallbacks(IPlayerInputActions instance)
@@ -297,5 +326,6 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         void OnMousePos(InputAction.CallbackContext context);
         void OnRepairMagic(InputAction.CallbackContext context);
         void OnDecayMagic(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
 }
