@@ -14,6 +14,8 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     [HideInInspector] public Vector2 mousePos;
 
     [SerializeField] Transform visaul;
+    [Header("===== Wand =====")]
+    public Wand curWand;
 
     [Header("===== HP =====")]
     [SerializeField] int maxHp;
@@ -28,15 +30,12 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
     [Header("===== Skill =====")]
     [Header("- Indicator")]
+    [SerializeField] Transform skillRangeIndicator;
     [SerializeField] Transform skillIndicator;
     [Header("- Detail")]
     [SerializeField] LayerMask skillMask;
-    [SerializeField] float area;
     [Header("- Repair Skill")]
     [SerializeField] float maxRepairMana;
-    [SerializeField] float repairManaMul;
-
-    [SerializeField] float useRepairManaMul;
 
     float curRepairMana;
 
@@ -172,18 +171,30 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
         if (GetWorldPosFormMouse(out Vector3 pos))
         {
             pos.y = 0;
-            skillIndicator.transform.position = pos;
+            float dist = Vector3.Distance(transform.position, pos);
+            if (dist <= curWand.skillRange)
+            {
+                skillIndicator.transform.position = pos;
+            }
+            else
+            {
+                Vector3 dir = GetDirToMouse();
+                Vector3 newPos = transform.position + dir * curWand.skillRange;
+                newPos.y = 0;
+                skillIndicator.transform.position = newPos;
+            }
         }
     }
 
     void ScaleIndicator()
     {
-        skillIndicator.localScale = Vector3.one * (area * 2f);
+        skillIndicator.localScale = Vector3.one * (curWand.skillArea * 2f);
+        skillRangeIndicator.localScale = Vector3.one * (curWand.skillRange * 2);
     }
 
     Collider[] GetColliderInArea()
     {
-        Collider[] col = Physics.OverlapSphere(skillIndicator.position, area, skillMask);
+        Collider[] col = Physics.OverlapSphere(skillIndicator.position, curWand.skillArea, skillMask);
         return col;
     }
 
@@ -241,7 +252,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
     public void AddRepairMana()
     {
-        curRepairMana += repairManaMul;
+        curRepairMana += curWand.toGetRepairMana;
         if (curRepairMana >= maxRepairMana)
         {
             curRepairMana = maxRepairMana;
@@ -250,12 +261,12 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
     public void RemoveRepairMana()
     {
-        curRepairMana -= useRepairManaMul;
+        curRepairMana -= curWand.toUseRepairMana;
     }
 
     public bool CanUseRepair()
     {
-        return curRepairMana >= useRepairManaMul;
+        return curRepairMana >= curWand.toUseRepairMana;
     }
 
     #endregion
@@ -263,7 +274,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(skillIndicator.position, area);
+        Gizmos.DrawWireSphere(skillIndicator.position, curWand.skillArea);
     }
 
 }

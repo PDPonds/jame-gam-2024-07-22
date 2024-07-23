@@ -485,7 +485,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.35355338, y: -0.35355338, z: 0.1464466, w: 0.8535535}
-  m_LocalPosition: {x: 3, y: 5, z: -3}
+  m_LocalPosition: {x: 2, y: 2.5, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2531,6 +2531,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2225302095590030463, guid: 03bc1ed4a886c414285f882f942217ca,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: aca5098dc1c06c048832dfc97a8ac514, type: 2}
+    - target: {fileID: 2633504802801244163, guid: 03bc1ed4a886c414285f882f942217ca,
+        type: 3}
+      propertyPath: curWand
+      value: 
+      objectReference: {fileID: 11400000, guid: 1479b852fc805f049aba24ad0b08a72d,
+        type: 2}
+    - target: {fileID: 2633504802801244163, guid: 03bc1ed4a886c414285f882f942217ca,
+        type: 3}
+      propertyPath: skillRange
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2633504802801244163, guid: 03bc1ed4a886c414285f882f942217ca,
         type: 3}
       propertyPath: skillIndicator
@@ -2630,7 +2646,7 @@ PrefabInstance:
     - target: {fileID: 3065664507465603056, guid: e74e152abd3c6e04bb066176b650ceb4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8496611982990215264, guid: e74e152abd3c6e04bb066176b650ceb4,
         type: 3}
