@@ -9,11 +9,25 @@ public enum GroundObjectState
 
 public class GroundObject : MonoBehaviour, IDamageable
 {
+
+    #region Ref
+
+    MeshRenderer meshRenderer;
+
+    #endregion
+
+    [SerializeField] GameObject outline;
+
     [SerializeField] Transform visusal;
     [SerializeField] int maxHp;
     int curHp;
 
     [SerializeField] GroundObjectState state;
+
+    private void Awake()
+    {
+        meshRenderer = visusal.GetComponent<MeshRenderer>();
+    }
 
     private void Start()
     {
@@ -79,6 +93,20 @@ public class GroundObject : MonoBehaviour, IDamageable
     public bool IsState(GroundObjectState state)
     {
         return this.state == state;
+    }
+
+    #endregion
+
+    #region Outline
+
+    public void ShowOutline()
+    {
+        outline.gameObject.SetActive(true);
+    }
+
+    public void HideOutline()
+    {
+        outline.gameObject.SetActive(false);
     }
 
     #endregion

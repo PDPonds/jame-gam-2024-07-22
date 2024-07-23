@@ -242,6 +242,8 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
             if (dist <= curWand.skillRange)
             {
                 skillIndicator.transform.position = pos;
+                skillRangeIndicator.gameObject.SetActive(false);
+
             }
             else
             {
@@ -249,14 +251,25 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
                 Vector3 newPos = transform.position + dir * curWand.skillRange;
                 newPos.y = 0;
                 skillIndicator.transform.position = newPos;
+                skillRangeIndicator.gameObject.SetActive(true);
+
             }
+        }
+        else
+        {
+            Vector3 dir = GetDirToMouse();
+            Vector3 newPos = transform.position + dir * curWand.skillRange;
+            newPos.y = 0;
+            skillIndicator.transform.position = newPos;
+            skillRangeIndicator.gameObject.SetActive(true);
+
         }
     }
 
     void ScaleIndicator()
     {
-        skillIndicator.localScale = Vector3.one * (curWand.skillArea * 2f);
-        skillRangeIndicator.localScale = Vector3.one * (curWand.skillRange * 2);
+        skillIndicator.localScale = new Vector3(curWand.skillArea * 2f, 1, curWand.skillArea * 2f);
+        skillRangeIndicator.localScale = new Vector3(curWand.skillRange * 2, curWand.skillRange * 2, 1);
     }
 
     Collider[] GetColliderInArea()
