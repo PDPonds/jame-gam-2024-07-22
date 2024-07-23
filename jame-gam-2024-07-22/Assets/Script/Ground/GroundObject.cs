@@ -22,6 +22,9 @@ public class GroundObject : MonoBehaviour, IDamageable
     [SerializeField] int maxHp;
     int curHp;
 
+    [SerializeField] Material sideMat;
+    [SerializeField] Material[] matLife;
+
     [SerializeField] GroundObjectState state;
 
     private void Awake()
@@ -39,6 +42,7 @@ public class GroundObject : MonoBehaviour, IDamageable
     void ResetHP()
     {
         curHp = maxHp;
+        SetupMat();
     }
 
     public void Death()
@@ -49,6 +53,7 @@ public class GroundObject : MonoBehaviour, IDamageable
     public void Heal()
     {
         curHp++;
+        SetupMat();
         if (curHp >= maxHp)
         {
             ResetHP();
@@ -62,6 +67,7 @@ public class GroundObject : MonoBehaviour, IDamageable
         if (IsState(GroundObjectState.Enable))
         {
             curHp--;
+            SetupMat();
             PlayerManager.Instance.AddRepairMana();
             if (curHp <= 0)
             {
@@ -107,6 +113,56 @@ public class GroundObject : MonoBehaviour, IDamageable
     public void HideOutline()
     {
         outline.gameObject.SetActive(false);
+    }
+
+    #endregion
+
+    #region Setup Mat
+
+    void SetupMat()
+    {
+        List<Material> mat = new List<Material>();
+        mat.Add(sideMat);
+
+        switch (curHp)
+        {
+            case 1:
+            case 2:
+
+                mat.Add(matLife[0]);
+                meshRenderer.SetMaterials(mat);
+
+                break;
+            case 3:
+            case 4:
+
+                mat.Add(matLife[1]);
+                meshRenderer.SetMaterials(mat);
+
+                break;
+            case 5:
+            case 6:
+
+                mat.Add(matLife[2]);
+                meshRenderer.SetMaterials(mat);
+
+                break;
+            case 7:
+            case 8:
+            case 9:
+
+                mat.Add(matLife[3]);
+                meshRenderer.SetMaterials(mat);
+
+                break;
+            case 10:
+
+                mat.Add(matLife[4]);
+                meshRenderer.SetMaterials(mat);
+
+                break;
+        }
+
     }
 
     #endregion

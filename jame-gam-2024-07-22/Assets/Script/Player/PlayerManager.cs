@@ -19,8 +19,8 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     public Wand curWand;
 
     [Header("===== HP =====")]
-    [SerializeField] int maxHp;
-    int curHp;
+    public int maxHp;
+    [HideInInspector] public int curHp;
 
     [Header("===== Mouse =====")]
     [SerializeField] LayerMask mouseMask;
@@ -32,8 +32,8 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     [Header("===== Dash =====")]
     [SerializeField] float dashForce;
     [SerializeField] float dashDuration;
-    [SerializeField] float dashDelay;
-    float curDashDelay;
+    public float dashDelay;
+    [HideInInspector] public float curDashDelay;
 
     [Header("===== Skill =====")]
     [Header("- Indicator")]
@@ -41,10 +41,17 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     [SerializeField] Transform skillIndicator;
     [Header("- Detail")]
     [SerializeField] LayerMask skillMask;
-    [Header("- Repair Skill")]
-    [SerializeField] float maxRepairMana;
 
-    float curRepairMana;
+    [Header("- Decay Skill")]
+    public float decayDelay;
+    [HideInInspector] public float curDecayDelay;
+
+    [Header("- Repair Skill")]
+    public float maxRepairMana;
+    public float repairDelay;
+    [HideInInspector] public float curRepairDelay;
+
+    [HideInInspector] public float curRepairMana;
 
     List<IDamageable> allIDamageable = new List<IDamageable>();
 
@@ -67,6 +74,8 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
         MoveIndicator();
         ScaleIndicator();
 
+        DecreaseDecayDelay();
+        DecreaseRepairDelay();
         CountDownDelay();
     }
 
@@ -194,11 +203,13 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     void ResetHP()
     {
         curHp = maxHp;
+        PlayerUI.Instance.UpdateHPFill();
     }
 
     void TakeDamage()
     {
         curHp--;
+        PlayerUI.Instance.UpdateHPFill();
         if (curHp <= 0)
         {
             Death();
@@ -208,6 +219,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     void RestoreHP()
     {
         curHp++;
+        PlayerUI.Instance.UpdateHPFill();
         if (curHp > maxHp)
         {
             ResetHP();
@@ -298,24 +310,32 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
     public void DecayObject()
     {
-        allIDamageable = GetAllIDamageable();
-        AttackAnimHandle();
-        if (allIDamageable.Count > 0)
+        if (curDecayDelay <= 0)
         {
-            for (int i = 0; i < allIDamageable.Count; i++)
+            allIDamageable = GetAllIDamageable();
+
+            AttackAnimHandle();
+
+            if (allIDamageable.Count > 0)
             {
-                IDamageable iD = allIDamageable[i];
-                iD.Hit();
+                for (int i = 0; i < allIDamageable.Count; i++)
+                {
+                    IDamageable iD = allIDamageable[i];
+                    iD.Hit();
+                }
             }
+
+            curDecayDelay = decayDelay;
         }
     }
 
     public void RepairObject()
     {
-        if (CanUseRepair())
+        if (CanUseRepair() && curRepairDelay <= 0)
         {
             RemoveRepairMana();
             AttackAnimHandle();
+
             allIDamageable = GetAllIDamageable();
             if (allIDamageable.Count > 0)
             {
@@ -324,6 +344,32 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
                     IDamageable iD = allIDamageable[i];
                     iD.Heal();
                 }
+            }
+
+            curRepairDelay = repairDelay;
+        }
+    }
+
+    void DecreaseDecayDelay()
+    {
+        if (curDecayDelay > 0)
+        {
+            curDecayDelay -= Time.deltaTime;
+            if (curDecayDelay <= 0)
+            {
+                curDecayDelay = 0;
+            }
+        }
+    }
+
+    void DecreaseRepairDelay()
+    {
+        if (curRepairDelay > 0)
+        {
+            curRepairDelay -= Time.deltaTime;
+            if (curRepairDelay <= 0)
+            {
+                curRepairDelay = 0;
             }
         }
     }
@@ -355,6 +401,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     public void AddRepairMana()
     {
         curRepairMana += curWand.toGetRepairMana;
+        PlayerUI.Instance.UpdateRepaireManaFill();
         if (curRepairMana >= maxRepairMana)
         {
             curRepairMana = maxRepairMana;
@@ -364,6 +411,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     public void RemoveRepairMana()
     {
         curRepairMana -= curWand.toUseRepairMana;
+        PlayerUI.Instance.UpdateRepaireManaFill();
     }
 
     public bool CanUseRepair()

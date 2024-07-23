@@ -72,6 +72,13 @@ MonoBehaviour:
   outline: {fileID: 5337397963808751863}
   visusal: {fileID: 578960374647261047}
   maxHp: 10
+  sideMat: {fileID: 2100000, guid: 13390756a9f6bd948b84e6f4b0c63c00, type: 2}
+  matLife:
+  - {fileID: 2100000, guid: e7a4e623b79cede4cbc49248365d31be, type: 2}
+  - {fileID: 2100000, guid: 80e60808a51244745a0468c4fe337ac2, type: 2}
+  - {fileID: 2100000, guid: 3422b167049f2e043a593dfe3bfae5b0, type: 2}
+  - {fileID: 2100000, guid: baa45e2c7cdc44d48bb3ba32df1f567b, type: 2}
+  - {fileID: 2100000, guid: 95b18056afc7c434ba3d8b48e7e08a1b, type: 2}
   state: 0
 --- !u!54 &2212349592328797082
 Rigidbody:

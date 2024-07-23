@@ -1192,19 +1192,26 @@ MonoBehaviour:
   visaul: {fileID: 8989737054300617563}
   curWand: {fileID: 11400000, guid: 1479b852fc805f049aba24ad0b08a72d, type: 2}
   maxHp: 5
+  curHp: 0
   mouseMask:
     serializedVersion: 2
     m_Bits: 512
   moveSpeed: 4
   dashForce: 3
-  dashDuration: 0.3
+  dashDuration: 0.15
   dashDelay: 5
+  curDashDelay: 0
   skillRangeIndicator: {fileID: 2016643130719257126}
   skillIndicator: {fileID: 0}
   skillMask:
     serializedVersion: 2
     m_Bits: 904
+  decayDelay: 0.2
+  curDecayDelay: 0
   maxRepairMana: 100
+  repairDelay: 0.2
+  curRepairDelay: 0
+  curRepairMana: 0
 --- !u!114 &6772890546153655182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1231,7 +1238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpFill: {fileID: 316804418973168264}
   decaySkillFill: {fileID: 1200408776420547331}
-  reparieManaFill: {fileID: 6884149410292227885}
+  repaireManaFill: {fileID: 6884149410292227885}
   repaireSkillFill: {fileID: 5504268972118841366}
   dashFill: {fileID: 7280660331552732417}
 --- !u!1 &8106284064240779819
