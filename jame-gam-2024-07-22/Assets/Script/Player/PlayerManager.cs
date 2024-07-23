@@ -82,8 +82,8 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
         if (moveInput != Vector2.zero)
         {
             anim.SetBool("isWalk", true);
-            if (moveInput.x > 0) spriteRenderer.flipX = true;
-            else spriteRenderer.flipX = false;
+            if (moveInput.x > 0) spriteRenderer.flipX = false;
+            else spriteRenderer.flipX = true;
         }
         else
         {
@@ -219,6 +219,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     public void DecayObject()
     {
         allIDamageable = GetAllIDamageable();
+        AttackAnimHandle();
         if (allIDamageable.Count > 0)
         {
             for (int i = 0; i < allIDamageable.Count; i++)
@@ -234,6 +235,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
         if (CanUseRepair())
         {
             RemoveRepairMana();
+            AttackAnimHandle();
             allIDamageable = GetAllIDamageable();
             if (allIDamageable.Count > 0)
             {
@@ -243,6 +245,22 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
                     iD.Heal();
                 }
             }
+        }
+    }
+
+    void AttackAnimHandle()
+    {
+        anim.Play("Attack");
+
+        Vector3 right = transform.TransformDirection(transform.right);
+        Vector3 dir = GetDirToMouse();
+        if (Vector3.Dot(right, dir) <= 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
         }
     }
 

@@ -180,7 +180,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: aca5098dc1c06c048832dfc97a8ac514, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -304,21 +304,18 @@ MonoBehaviour:
   moveInput: {x: 0, y: 0}
   mousePos: {x: 0, y: 0}
   visaul: {fileID: 8989737054300617563}
+  curWand: {fileID: 11400000, guid: 1479b852fc805f049aba24ad0b08a72d, type: 2}
   maxHp: 5
   mouseMask:
     serializedVersion: 2
     m_Bits: 512
   moveSpeed: 4
-  skillRange: 5
   skillRangeIndicator: {fileID: 2016643130719257126}
   skillIndicator: {fileID: 0}
   skillMask:
     serializedVersion: 2
     m_Bits: 904
-  area: 0.5
   maxRepairMana: 100
-  repairManaMul: 10
-  useRepairManaMul: 15
 --- !u!114 &6772890546153655182
 MonoBehaviour:
   m_ObjectHideFlags: 0

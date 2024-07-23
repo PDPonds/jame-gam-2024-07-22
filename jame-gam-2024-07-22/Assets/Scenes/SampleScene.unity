@@ -2531,27 +2531,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2225302095590030463, guid: 03bc1ed4a886c414285f882f942217ca,
+    - target: {fileID: 2258187006510268886, guid: 03bc1ed4a886c414285f882f942217ca,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2100000, guid: aca5098dc1c06c048832dfc97a8ac514, type: 2}
-    - target: {fileID: 2633504802801244163, guid: 03bc1ed4a886c414285f882f942217ca,
+      objectReference: {fileID: 1751637282, guid: 544656fa4a300b642b4636f5b5f99afa,
         type: 3}
-      propertyPath: curWand
-      value: 
-      objectReference: {fileID: 11400000, guid: 1479b852fc805f049aba24ad0b08a72d,
-        type: 2}
-    - target: {fileID: 2633504802801244163, guid: 03bc1ed4a886c414285f882f942217ca,
+    - target: {fileID: 2258187006510268886, guid: 03bc1ed4a886c414285f882f942217ca,
         type: 3}
-      propertyPath: skillRange
-      value: 2
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2633504802801244163, guid: 03bc1ed4a886c414285f882f942217ca,
         type: 3}
       propertyPath: skillIndicator
       value: 
       objectReference: {fileID: 1446500445}
+    - target: {fileID: 2945183918581021232, guid: 03bc1ed4a886c414285f882f942217ca,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fbf082ec053bb0c4482a5f9e4476b55b, type: 2}
     - target: {fileID: 7562847330576848105, guid: 03bc1ed4a886c414285f882f942217ca,
         type: 3}
       propertyPath: m_Name
@@ -2642,11 +2642,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SkillIndicator
-      objectReference: {fileID: 0}
-    - target: {fileID: 3065664507465603056, guid: e74e152abd3c6e04bb066176b650ceb4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8496611982990215264, guid: e74e152abd3c6e04bb066176b650ceb4,
         type: 3}
