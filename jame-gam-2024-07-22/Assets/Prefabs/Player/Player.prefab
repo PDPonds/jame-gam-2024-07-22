@@ -5965,6 +5965,8 @@ MonoBehaviour:
     m_Bits: 904
   decayDelay: 0.2
   curDecayDelay: 0
+  exploreParticle: {fileID: 5881768739090172446, guid: d586f2417b3e8634f81534e4032d44ce,
+    type: 3}
   repairDelay: 0.2
   curRepairDelay: 0
   repairParticle: {fileID: 4533408189789963679}

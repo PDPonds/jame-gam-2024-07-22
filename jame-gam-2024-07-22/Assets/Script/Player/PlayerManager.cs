@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -46,6 +47,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     [Header("- Decay Skill")]
     public float decayDelay;
     [HideInInspector] public float curDecayDelay;
+    [SerializeField] GameObject exploreParticle;
 
     [Header("- Repair Skill")]
     public float repairDelay;
@@ -311,6 +313,11 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
         {
             allIDamageable = GetAllIDamageable();
 
+            if (GetWorldPosFormMouse(out Vector3 pos))
+            {
+                InstanceParticle(exploreParticle, pos, 1f);
+            }
+
             AttackAnimHandle();
 
             if (allIDamageable.Count > 0)
@@ -391,6 +398,12 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
         }
     }
 
+    void InstanceParticle(GameObject particle, Vector3 pos, float duration)
+    {
+        GameObject go = Instantiate(particle, pos, quaternion.identity);
+        Destroy(go, duration);
+    }
+
     #endregion
 
     #region Repair
@@ -411,7 +424,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
         curHp += curWand.toGetRepair;
         repairParticle.SetActive(false);
         repairParticle.SetActive(true);
-        if(curHp >= maxHp)
+        if (curHp >= maxHp)
         {
             ResetHP();
         }
