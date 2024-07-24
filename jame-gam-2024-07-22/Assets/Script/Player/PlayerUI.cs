@@ -159,8 +159,8 @@ public class PlayerUI : Singleton<PlayerUI>
 
     Sprite GetWandStatus(float curStatus, float newStatus)
     {
-        if (curStatus > newStatus) return statusUp;
-        else if (curStatus < newStatus) return statusDown;
+        if (curStatus < newStatus) return statusUp;
+        else if (curStatus > newStatus) return statusDown;
         else return statusEquals;
     }
 

@@ -17,9 +17,9 @@ public class InputManager : MonoBehaviour
 
             action.PlayerInput.RepairMagic.performed += i => PlayerManager.Instance.RepairObject();
 
-            action.PlayerInput.DecayMagic.performed += i => PlayerManager.Instance.DecayObject();
+            action.PlayerInput.DecayMagic.performed += i => OnLeftClick();
 
-            action.PlayerInput.Dash.performed += i => PlayerManager.Instance.Dash();
+            action.PlayerInput.Dash.performed += i => OnSpace();
 
             action.PlayerInput.Pause.performed += i => Pause.Instance.TogglePauseButton();
 
@@ -33,5 +33,28 @@ public class InputManager : MonoBehaviour
         action.Disable();
     }
 
+    void OnLeftClick()
+    {
+        if(Dialogue.Instance.IsDialoguePanelOpen())
+        {
+            Dialogue.Instance.SpaceOrClickOnDialog();
+        }
+        else
+        {
+            PlayerManager.Instance.DecayObject();
+        }
+    }
+
+    void OnSpace()
+    {
+        if (Dialogue.Instance.IsDialoguePanelOpen())
+        {
+            Dialogue.Instance.SpaceOrClickOnDialog();
+        }
+        else
+        {
+            PlayerManager.Instance.Dash();
+        }
+    }
 
 }
