@@ -41,18 +41,22 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     [Header("- Indicator")]
     [SerializeField] Transform skillRangeIndicator;
     [SerializeField] Transform skillIndicator;
+    [SerializeField] Transform spawnParticlePoint;
     [Header("- Detail")]
     [SerializeField] LayerMask skillMask;
 
     [Header("- Decay Skill")]
     public float decayDelay;
     [HideInInspector] public float curDecayDelay;
+    [SerializeField] GameObject decayParticle;
     [SerializeField] GameObject explosiveParticle;
+    [SerializeField] GameObject healParticle;
 
     [Header("- Repair Skill")]
     public float repairDelay;
     [HideInInspector] public float curRepairDelay;
     [SerializeField] GameObject repairParticle;
+    [SerializeField] GameObject repairAndHealObjectParticel;
 
     List<IDamageable> allIDamageable = new List<IDamageable>();
 
@@ -316,6 +320,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
             if (GetWorldPosFormMouse(out Vector3 pos))
             {
                 InstanceParticle(explosiveParticle, pos, 1f);
+                InstancteTailParticle(decayParticle, pos);
             }
 
             AttackAnimHandle();
@@ -339,6 +344,12 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
         {
             curHp -= curWand.toUseRepair;
             AttackAnimHandle();
+
+            if (GetWorldPosFormMouse(out Vector3 pos))
+            {
+                InstanceParticle(repairAndHealObjectParticel, pos, 1f); 
+                InstancteTailParticle(repairParticle, pos);
+            }
 
             allIDamageable = GetAllIDamageable();
             if (allIDamageable.Count > 0)
@@ -404,6 +415,14 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
         Destroy(go, duration);
     }
 
+    void InstancteTailParticle(GameObject tail, Vector3 pos)
+    {
+        GameObject go = Instantiate(tail, spawnParticlePoint.position, Quaternion.identity);
+        TailParticle repairTail = go.GetComponent<TailParticle>();
+
+        repairTail.Setup(pos);
+    }
+
     #endregion
 
     #region Repair
@@ -422,8 +441,8 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     public void GetRepair()
     {
         curHp += curWand.toGetRepair;
-        repairParticle.SetActive(false);
-        repairParticle.SetActive(true);
+        healParticle.SetActive(false);
+        healParticle.SetActive(true);
         if (curHp >= maxHp)
         {
             ResetHP();

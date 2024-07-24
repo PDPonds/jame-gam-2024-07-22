@@ -5879,6 +5879,7 @@ Transform:
   - {fileID: 601283345157373792}
   - {fileID: 2306232570451904817}
   - {fileID: 3651142431738982668}
+  - {fileID: 6562671660447525024}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &8432435990287265371
@@ -5960,16 +5961,24 @@ MonoBehaviour:
   curDashDelay: 0
   skillRangeIndicator: {fileID: 2016643130719257126}
   skillIndicator: {fileID: 0}
+  spawnParticlePoint: {fileID: 6562671660447525024}
   skillMask:
     serializedVersion: 2
     m_Bits: 904
   decayDelay: 0.2
   curDecayDelay: 0
+  decayParticle: {fileID: 2575807663194588496, guid: 573e62bbf2f0eb449bdd1e22cd8234e4,
+    type: 3}
   explosiveParticle: {fileID: 5881768739090172446, guid: d586f2417b3e8634f81534e4032d44ce,
+    type: 3}
+  healParticle: {fileID: 8278286369693312599, guid: c5f9fbc3ab59c7c409a3d0d6b9658637,
     type: 3}
   repairDelay: 0.2
   curRepairDelay: 0
-  repairParticle: {fileID: 4533408189789963679}
+  repairParticle: {fileID: 2575807663194588496, guid: ba1839a00c2f78341bb0a531b5699b5d,
+    type: 3}
+  repairAndHealObjectParticel: {fileID: 6023283744413567994, guid: 40211da0cc94c9441be185e6e5651999,
+    type: 3}
 --- !u!114 &6772890546153655182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5998,6 +6007,37 @@ MonoBehaviour:
   decaySkillFill: {fileID: 1200408776420547331}
   repaireSkillFill: {fileID: 5504268972118841366}
   dashFill: {fileID: 7280660331552732417}
+--- !u!1 &7570319602919929339
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6562671660447525024}
+  m_Layer: 3
+  m_Name: SpawnParticlePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6562671660447525024
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7570319602919929339}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2179064116455555044}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8310975387822944607
 GameObject:
   m_ObjectHideFlags: 0
@@ -6379,12 +6419,6 @@ PrefabInstance:
 --- !u!4 &3651142431738982668 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9124558512350319300, guid: c5f9fbc3ab59c7c409a3d0d6b9658637,
-    type: 3}
-  m_PrefabInstance: {fileID: 5479621999116428232}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4533408189789963679 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8278286369693312599, guid: c5f9fbc3ab59c7c409a3d0d6b9658637,
     type: 3}
   m_PrefabInstance: {fileID: 5479621999116428232}
   m_PrefabAsset: {fileID: 0}
