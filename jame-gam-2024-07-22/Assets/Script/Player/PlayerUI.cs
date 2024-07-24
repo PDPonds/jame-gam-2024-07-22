@@ -138,12 +138,12 @@ public class PlayerUI : Singleton<PlayerUI>
         curRepairAmountText.text = $"Heal Amount : {curWand.repairAmount.ToString("N1")}";
 
         newWandIcon.sprite = newWand.wandIcon;
-        newSkillAreaText.text = $"Attack Area : {curWand.skillArea.ToString("N1")}";
-        newSkillRangeText.text = $"Max Attack Range : {curWand.skillRange.ToString("N1")}";
-        newDecayDamageText.text = $"Decay Damage : {curWand.decayDamage.ToString("N1")}";
-        newToGetHPText.text = $"Mana Leech : {curWand.toGetHP.ToString("N1")}";
-        newToUseText.text = $"Mana Transferring : {curWand.toUseHP.ToString("N1")}";
-        newRepairAmountText.text = $"Heal Amount : {curWand.repairAmount.ToString("N1")}";
+        newSkillAreaText.text = $"Attack Area : {newWand.skillArea.ToString("N1")}";
+        newSkillRangeText.text = $"Max Attack Range : {newWand.skillRange.ToString("N1")}";
+        newDecayDamageText.text = $"Decay Damage : {newWand.decayDamage.ToString("N1")}";
+        newToGetHPText.text = $"Mana Leech : {newWand.toGetHP.ToString("N1")}";
+        newToUseText.text = $"Mana Transferring : {newWand.toUseHP.ToString("N1")}";
+        newRepairAmountText.text = $"Heal Amount : {newWand.repairAmount.ToString("N1")}";
 
         newSkillAreaStatus.sprite = GetWandStatus(curWand.skillArea, newWand.skillArea);
         newSkillRangeStatus.sprite = GetWandStatus(curWand.skillRange, newWand.skillRange);

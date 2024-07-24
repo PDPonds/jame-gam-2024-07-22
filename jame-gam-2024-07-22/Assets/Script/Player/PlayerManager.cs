@@ -123,7 +123,8 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     {
         if (curDashDelay <= 0)
         {
-            StartCoroutine(dash(GetDirToMouse(), dashForce, dashDuration));
+            Vector3 moveDir = new Vector3(moveInput.x, 0, moveInput.y);
+            StartCoroutine(dash(moveDir, dashForce, dashDuration));
             DashAnimHandle();
             curDashDelay = dashDelay;
         }
@@ -347,7 +348,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
             if (GetWorldPosFormMouse(out Vector3 pos))
             {
-                InstanceParticle(repairAndHealObjectParticel, pos, 1f); 
+                InstanceParticle(repairAndHealObjectParticel, pos, 1f);
                 InstancteTailParticle(repairParticle, pos);
             }
 
