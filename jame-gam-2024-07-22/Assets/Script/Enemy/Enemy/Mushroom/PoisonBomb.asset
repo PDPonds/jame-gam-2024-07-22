@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a032ba91ef6c04fae5e44570c054d8, type: 3}
   m_Name: PoisonBomb
   m_EditorClassIdentifier: 
-  skillParticle: {fileID: 5881768739090172446, guid: d586f2417b3e8634f81534e4032d44ce,
+  skillParticle: {fileID: 1204578854013597007, guid: b7dd5e86057bd8a4ca8bcdb06a1b1236,
     type: 3}
   chargeTime: 0.5
   count: 1
