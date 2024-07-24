@@ -12,6 +12,12 @@ public class SkillIndicator : MonoBehaviour
             {
                 groundObject.ShowOutline();
             }
+
+            if (other.TryGetComponent<GrassGroundObject>(out GrassGroundObject grassGroundObject))
+            {
+                grassGroundObject.ShowOutline();
+            }
+
         }
     }
 
@@ -22,6 +28,11 @@ public class SkillIndicator : MonoBehaviour
             if (other.TryGetComponent<GroundObject>(out GroundObject groundObject))
             {
                 groundObject.HideOutline();
+            }
+
+            if (other.TryGetComponent<GrassGroundObject>(out GrassGroundObject grassGroundObject))
+            {
+                grassGroundObject.HideOutline();
             }
         }
     }
