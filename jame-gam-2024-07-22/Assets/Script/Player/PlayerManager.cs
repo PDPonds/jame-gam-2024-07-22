@@ -342,7 +342,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     {
         if (CanUseRepair() && curRepairDelay <= 0)
         {
-            curHp -= curWand.toUseRepair;
+            curHp -= curWand.toUseHP;
             AttackAnimHandle();
 
             if (GetWorldPosFormMouse(out Vector3 pos))
@@ -435,12 +435,12 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
     public bool CanUseRepair()
     {
-        return curHp > curWand.toUseRepair;
+        return curHp > curWand.toUseHP;
     }
 
     public void GetRepair()
     {
-        curHp += curWand.toGetRepair;
+        curHp += curWand.toGetHP;
         healParticle.SetActive(false);
         healParticle.SetActive(true);
         if (curHp >= maxHp)

@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f5b013a19dea674da0d1e6204dc21e1, type: 3}
-  m_Name: StarterWand
+  m_Script: {fileID: 11500000, guid: 68d301318a9228942bb86a1503673a32, type: 3}
+  m_Name: All Wands
   m_EditorClassIdentifier: 
-  wandIcon: {fileID: -1597863910, guid: 544656fa4a300b642b4636f5b5f99afa, type: 3}
-  skillArea: 0.5
-  skillRange: 2
-  decayDamage: 15
-  toGetHP: 5
-  toUseHP: 5
-  repairAmount: 10
+  Wands:
+  - {fileID: 11400000, guid: 297d1e48d2acb2648bda60b1ac6f6e10, type: 2}
+  - {fileID: 11400000, guid: 6c75fadcf18560845ae6e4ab4a0b3009, type: 2}

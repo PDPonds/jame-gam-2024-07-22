@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f5b013a19dea674da0d1e6204dc21e1, type: 3}
-  m_Name: StarterWand
+  m_Name: DecayWand
   m_EditorClassIdentifier: 
-  wandIcon: {fileID: -1597863910, guid: 544656fa4a300b642b4636f5b5f99afa, type: 3}
+  wandIcon: {fileID: 477828149, guid: 544656fa4a300b642b4636f5b5f99afa, type: 3}
   skillArea: 0.5
   skillRange: 2
-  decayDamage: 15
+  decayDamage: 25
   toGetHP: 5
   toUseHP: 5
-  repairAmount: 10
+  repairAmount: 5
