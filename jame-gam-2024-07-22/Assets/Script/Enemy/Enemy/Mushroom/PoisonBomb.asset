@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87a032ba91ef6c04fae5e44570c054d8, type: 3}
-  m_Name: Slame
+  m_Name: PoisonBomb
   m_EditorClassIdentifier: 
-  skillParticle: {fileID: 0}
-  chargeTime: 1
+  skillParticle: {fileID: 5881768739090172446, guid: d586f2417b3e8634f81534e4032d44ce,
+    type: 3}
+  chargeTime: 0.5
   count: 1
   delayPerCount: 0
   damage: 10
-  animOverride: {fileID: 0}
+  animOverride: {fileID: 22100000, guid: 86b9f4677c7ce4d408ee0c57478ace30, type: 2}
   type: 1
-  area: 0.5
+  area: 1

@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     NavMeshAgent agent;
     Rigidbody rb;
     Animator anim;
+    SpriteRenderer spriteRenderer;
     #endregion
 
     [SerializeField] Transform visual;
@@ -39,16 +40,22 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     float curChargeAttack;
 
+    float deathTime;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
-        //anim = visual.GetComponent<Animator>();
+        anim = visual.GetComponent<Animator>();
+        spriteRenderer = visual.GetComponent<SpriteRenderer>();
+
+        OnSpawn();
     }
 
     private void Update()
     {
         UpdateBehavoir();
+        FlipSpriteWithPlayerDir();
     }
 
     #region Behavior
@@ -57,7 +64,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         curHp = enemy.maxHp;
         SwithBehavoir(EnemyBehavior.Spawn);
-        //anim.runtimeAnimatorController = enemy.animOverride;
+        anim.runtimeAnimatorController = enemy.animOverride;
     }
 
     public void SwithBehavoir(EnemyBehavior behavior)
@@ -66,26 +73,31 @@ public class EnemyController : MonoBehaviour, IDamageable
         switch (behavior)
         {
             case EnemyBehavior.Spawn:
+                anim.Play("OnSpawn");
                 break;
             case EnemyBehavior.Chase:
 
+                deathTime = 5f;
                 attackAlready = false;
                 SetAttackType();
 
                 break;
             case EnemyBehavior.ChargeToAttack:
 
+                anim.Play("OnChargeAttack");
                 curChargeAttack = 0;
                 ShowAttackIndicator();
 
                 break;
             case EnemyBehavior.Attack:
 
+                anim.Play("OnAttack");
                 Attack();
                 HideAttackIndicator();
 
                 break;
             case EnemyBehavior.Death:
+                anim.Play("OnDeath");
                 Death();
                 break;
         }
@@ -98,11 +110,16 @@ public class EnemyController : MonoBehaviour, IDamageable
             case EnemyBehavior.Spawn:
 
                 StopMove();
+                if (IsAnimationEnd("OnSpawn"))
+                {
+                    SwithBehavoir(EnemyBehavior.Chase);
+                }
 
                 break;
             case EnemyBehavior.Chase:
 
                 agent.SetDestination(PlayerManager.Instance.transform.position);
+                anim.SetBool("isWalk", true);
                 float dist = Vector3.Distance(transform.position, PlayerManager.Instance.transform.position);
                 float maxDist = GetAttackRange();
                 if (dist <= maxDist)
@@ -130,6 +147,11 @@ public class EnemyController : MonoBehaviour, IDamageable
             case EnemyBehavior.Death:
 
                 StopMove();
+                deathTime -= Time.deltaTime;
+                if (deathTime <= 0)
+                {
+                    Destroy(gameObject);
+                }
 
                 break;
         }
@@ -144,6 +166,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         agent.SetDestination(transform.position);
         agent.velocity = Vector3.zero;
+        anim.SetBool("isWalk", false);
     }
 
     public void LookAt(Vector3 pos)
@@ -166,7 +189,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         int index = UnityEngine.Random.Range(0, enemy.attackType.Count);
         AttackType attackType = enemy.attackType[index];
         curAttackType = attackType;
-        //anim.runtimeAnimatorController = curAttackType.animOverride;
+        anim.runtimeAnimatorController = curAttackType.animOverride;
     }
 
     float GetAttackRange()
@@ -191,6 +214,27 @@ public class EnemyController : MonoBehaviour, IDamageable
                 break;
         }
         return attackRange;
+    }
+
+    bool IsAnimationEnd(string name)
+    {
+        return anim.GetCurrentAnimatorStateInfo(0).IsName(name) &&
+            anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f;
+    }
+
+    void FlipSpriteWithPlayerDir()
+    {
+        Vector3 right = transform.TransformDirection(transform.right);
+        Vector3 dir = PlayerManager.Instance.transform.position - transform.position;
+        dir = dir.normalized;
+        if (Vector3.Dot(right, dir) <= 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else
+        {
+            spriteRenderer.flipX = true;
+        }
     }
 
     #endregion
@@ -310,14 +354,33 @@ public class EnemyController : MonoBehaviour, IDamageable
         float area = around.area;
 
         GameObject particle = Instantiate(around.skillParticle, transform.position, Quaternion.identity);
+        Destroy(particle, 1f);
 
         Collider[] cols = Physics.OverlapSphere(transform.position, area, playerMask);
         if (cols.Length > 0)
         {
-            PlayerManager.Instance.Hit(around.damage);
+            for (int i = 0; i < cols.Length; i++)
+            {
+                if (cols[i].TryGetComponent<PlayerManager>(out PlayerManager playerManager))
+                {
+                    playerManager.Hit(around.damage);
+                }
+            }
         }
     }
 
     #endregion
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        if (curAttackType != null)
+        {
+            if (curAttackType is AroundUserAttack area)
+            {
+                Gizmos.DrawWireSphere(transform.position, area.area);
+            }
+        }
+    }
 
 }
