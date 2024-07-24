@@ -7,7 +7,7 @@ using UnityEngine.Playables;
 public class PlayerManager : Singleton<PlayerManager>, IDamageable
 {
     #region Ref
-    Rigidbody rb;
+    [HideInInspector] public Rigidbody rb;
     Animator anim;
     SpriteRenderer spriteRenderer;
     #endregion

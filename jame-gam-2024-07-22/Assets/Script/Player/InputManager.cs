@@ -21,6 +21,7 @@ public class InputManager : MonoBehaviour
 
             action.PlayerInput.Dash.performed += i => PlayerManager.Instance.Dash();
 
+            action.PlayerInput.Pause.performed += i => Pause.Instance.TogglePauseButton();
 
         }
 
@@ -31,5 +32,6 @@ public class InputManager : MonoBehaviour
     {
         action.Disable();
     }
+
 
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8986974677113016088}
   - component: {fileID: 6578508994037395354}
   - component: {fileID: 6981924249544571991}
+  - component: {fileID: 7561051686880083387}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45,8 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f32f7f691dfdafe449cd5fc195b0699e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneShakeDuration: 0.15
-  sceneShakeMagnitude: 0.4
 --- !u!114 &6981924249544571991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,3 +77,16 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: d62f71e37da18e24888b471080cdea96, type: 2}
   m_BuildHeightMesh: 0
+--- !u!114 &7561051686880083387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9189252557968011609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5381b0e6982c21249ba52bc0243e991d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPause: 0

@@ -59,6 +59,9 @@ public class PlayerUI : Singleton<PlayerUI>
     [SerializeField] Sprite statusDown;
     [SerializeField] Sprite statusEquals;
 
+    [Header("- Pause")]
+    [SerializeField] GameObject pausePanel;
+
     private void Start()
     {
         cancleNewWand.onClick.AddListener(HideSelectWandPanel);
@@ -177,6 +180,16 @@ public class PlayerUI : Singleton<PlayerUI>
     public void UpdateCurWand()
     {
         curWand.sprite = PlayerManager.Instance.curWand.wandIcon;
+    }
+
+    public void ShowPause()
+    {
+        pausePanel.SetActive(true);
+    }
+
+    public void HidePause()
+    {
+        pausePanel.SetActive(false);
     }
 
 }
