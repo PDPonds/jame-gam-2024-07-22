@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 188aa0003a0e42f42b64972ec0175708, type: 3}
-  m_Name: Skeleton
+  m_Name: Bat
   m_EditorClassIdentifier: 
   maxHp: 50
-  animOverride: {fileID: 0}
+  animOverride: {fileID: 22100000, guid: 70347fd30363f124884c9328f0236191, type: 2}
   attackType:
   - {fileID: 11400000, guid: b46f3237223c4234b965c125d2cdcdc5, type: 2}

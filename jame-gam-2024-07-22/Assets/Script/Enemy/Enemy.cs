@@ -7,8 +7,6 @@ public class Enemy : ScriptableObject
 {
     [Header("===== HP =====")]
     public int maxHp;
-    [Header("===== Animator =====")]
-    public AnimatorOverrideController animOverride;
     [Header("===== Attack =====")]
     public List<AttackType> attackType = new List<AttackType>();
 

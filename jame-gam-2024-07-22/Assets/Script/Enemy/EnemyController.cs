@@ -64,7 +64,6 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         curHp = enemy.maxHp;
         SwithBehavoir(EnemyBehavior.Spawn);
-        anim.runtimeAnimatorController = enemy.animOverride;
     }
 
     public void SwithBehavoir(EnemyBehavior behavior)
@@ -301,7 +300,7 @@ public class EnemyController : MonoBehaviour, IDamageable
                 rangeSkillIndicator.gameObject.SetActive(true);
                 RangeAttack range = (RangeAttack)curAttackType;
                 float size = range.time * range.speed;
-                Vector3 rangeScale = new Vector3(0, 0, 1) * size;
+                Vector3 rangeScale = new Vector3(1, 1, 1 * size) ;
                 rangeSkillIndicator.localScale = rangeScale;
 
                 break;

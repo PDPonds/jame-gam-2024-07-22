@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 303afaed887175c4b943e043d57ec9aa, type: 3}
-  m_Name: Arrow
+  m_Name: BatWave
   m_EditorClassIdentifier: 
   skillParticle: {fileID: 2537568834470248285, guid: 882b261b80db90144a7424a4181f5123,
     type: 3}
@@ -18,7 +18,7 @@ MonoBehaviour:
   count: 1
   delayPerCount: 0
   damage: 15
-  animOverride: {fileID: 0}
+  animOverride: {fileID: 22100000, guid: dc68a8ef99d783c48982780d20f4ac64, type: 2}
   type: 0
-  speed: 5
-  time: 2
+  speed: 2.5
+  time: 1

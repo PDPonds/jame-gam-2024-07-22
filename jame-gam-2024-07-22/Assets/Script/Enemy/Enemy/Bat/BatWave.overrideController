@@ -6,18 +6,18 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PoisonBomb
+  m_Name: BatWave
   m_Controller: {fileID: 9100000, guid: b02f9493280be2e4b8c2667eff7431f6, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: e9be57ab062beb74090756d4b97f8893, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: e9be57ab062beb74090756d4b97f8893, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e584b25f7fa97c94ab6736b2c3cf7e25, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 11535562d19800c468bb01fcd8876866, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 11535562d19800c468bb01fcd8876866, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7ec3f821a991083448ab54867ef0c305, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 5381e60e60957de4bbbcb77f0786e977, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 5381e60e60957de4bbbcb77f0786e977, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 31ce411ab6e660c44a49b97211cc82c6, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: a0be427baa2772443a7adfdafa7d2061, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: a0be427baa2772443a7adfdafa7d2061, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 001402275da107543aedff2f6bff1a19, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 4d4b5c73db13aa141860838d14e64b5a, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 4d4b5c73db13aa141860838d14e64b5a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a97d1557e898e9e4d8044a10003ce2c3, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: d94def5886d651449ae1250eb0168480, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: d94def5886d651449ae1250eb0168480, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d0f96878f7dee024da29ff7d6eb653d5, type: 2}

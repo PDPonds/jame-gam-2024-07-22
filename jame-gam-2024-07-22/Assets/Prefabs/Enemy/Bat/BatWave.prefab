@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6922402831719236218}
   - component: {fileID: 3014694498265457832}
   m_Layer: 0
-  m_Name: ArrowObject
+  m_Name: BatWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
