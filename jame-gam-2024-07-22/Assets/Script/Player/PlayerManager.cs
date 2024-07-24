@@ -50,6 +50,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     [Header("- Repair Skill")]
     public float repairDelay;
     [HideInInspector] public float curRepairDelay;
+    [SerializeField] GameObject repairParticle;
 
     List<IDamageable> allIDamageable = new List<IDamageable>();
 
@@ -408,6 +409,8 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     public void GetRepair()
     {
         curHp += curWand.toGetRepair;
+        repairParticle.SetActive(false);
+        repairParticle.SetActive(true);
         if(curHp >= maxHp)
         {
             ResetHP();
