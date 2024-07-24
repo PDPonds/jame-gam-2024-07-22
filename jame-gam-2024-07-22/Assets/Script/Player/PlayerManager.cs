@@ -47,7 +47,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     [Header("- Decay Skill")]
     public float decayDelay;
     [HideInInspector] public float curDecayDelay;
-    [SerializeField] GameObject exploreParticle;
+    [SerializeField] GameObject explosiveParticle;
 
     [Header("- Repair Skill")]
     public float repairDelay;
@@ -315,7 +315,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
             if (GetWorldPosFormMouse(out Vector3 pos))
             {
-                InstanceParticle(exploreParticle, pos, 1f);
+                InstanceParticle(explosiveParticle, pos, 1f);
             }
 
             AttackAnimHandle();
