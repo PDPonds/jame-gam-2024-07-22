@@ -16,6 +16,9 @@ public class AttackType : ScriptableObject
     public int count;
     public float delayPerCount;
 
+    [Header("===== Damage =====")]
+    public float damage;
+
     [Header("===== Animator =====")]
     public AnimatorOverrideController animOverride;
 

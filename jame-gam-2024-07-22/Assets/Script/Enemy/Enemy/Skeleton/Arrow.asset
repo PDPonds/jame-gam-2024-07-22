@@ -17,6 +17,7 @@ MonoBehaviour:
   chargeTime: 1
   count: 1
   delayPerCount: 0
+  damage: 15
   animOverride: {fileID: 0}
   type: 0
   speed: 5

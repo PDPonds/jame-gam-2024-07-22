@@ -71,7 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outline: {fileID: 5337397963808751863}
   visusal: {fileID: 578960374647261047}
-  maxHp: 10
+  maxHp: 100
   sideMat: {fileID: 2100000, guid: 13390756a9f6bd948b84e6f4b0c63c00, type: 2}
   matLife:
   - {fileID: 2100000, guid: e7a4e623b79cede4cbc49248365d31be, type: 2}

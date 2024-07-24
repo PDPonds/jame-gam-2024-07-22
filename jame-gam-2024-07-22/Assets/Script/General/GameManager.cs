@@ -11,6 +11,7 @@ public class GameManager : Singleton<GameManager>
     private void Awake()
     {
         nav = GetComponent<NavMeshSurface>();
+
     }
 
     public void BrakeNav()

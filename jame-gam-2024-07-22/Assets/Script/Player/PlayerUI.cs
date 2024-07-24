@@ -12,7 +12,6 @@ public class PlayerUI : Singleton<PlayerUI>
     [SerializeField] Image decaySkillFill;
 
     [Header("- Repaire")]
-    [SerializeField] Image repaireManaFill;
     [SerializeField] Image repaireSkillFill;
 
     [Header("- Dash")]
@@ -25,22 +24,12 @@ public class PlayerUI : Singleton<PlayerUI>
         UpdateRepairFill();
     }
 
-    private void Start()
-    {
-        UpdateRepaireManaFill();
-    }
-
     public void UpdateHPFill()
     {
         float percent = PlayerManager.Instance.curHp / PlayerManager.Instance.maxHp;
         hpFill.fillAmount = percent;
     }
 
-    public void UpdateRepaireManaFill()
-    {
-        float percent = PlayerManager.Instance.curRepairMana / PlayerManager.Instance.maxRepairMana;
-        repaireManaFill.fillAmount = percent;
-    }
 
     void UpdateDashFill()
     {

@@ -19,8 +19,8 @@ public class GroundObject : MonoBehaviour, IDamageable
     [SerializeField] GameObject outline;
 
     [SerializeField] Transform visusal;
-    [SerializeField] int maxHp;
-    int curHp;
+    [SerializeField] float maxHp;
+    float curHp;
 
     [SerializeField] Material sideMat;
     [SerializeField] Material[] matLife;
@@ -50,25 +50,27 @@ public class GroundObject : MonoBehaviour, IDamageable
         SwitchState(GroundObjectState.Disable);
     }
 
-    public void Heal()
+    public void Heal(float damage)
     {
-        curHp++;
+        curHp += damage;
         SetupMat();
         if (curHp >= maxHp)
         {
             ResetHP();
             if (IsState(GroundObjectState.Disable))
+            {
                 SwitchState(GroundObjectState.Enable);
+            }
         }
     }
 
-    public void Hit()
+    public void Hit(float amount)
     {
         if (IsState(GroundObjectState.Enable))
         {
-            curHp--;
+            curHp -= amount;
             SetupMat();
-            PlayerManager.Instance.AddRepairMana();
+            PlayerManager.Instance.GetRepair();
             if (curHp <= 0)
             {
                 Death();
@@ -126,36 +128,36 @@ public class GroundObject : MonoBehaviour, IDamageable
 
         switch (curHp)
         {
-            case 1:
-            case 2:
+            case 10:
+            case 20:
 
                 mat.Add(matLife[0]);
                 meshRenderer.SetMaterials(mat);
 
                 break;
-            case 3:
-            case 4:
+            case 30:
+            case 40:
 
                 mat.Add(matLife[1]);
                 meshRenderer.SetMaterials(mat);
 
                 break;
-            case 5:
-            case 6:
+            case 50:
+            case 60:
 
                 mat.Add(matLife[2]);
                 meshRenderer.SetMaterials(mat);
 
                 break;
-            case 7:
-            case 8:
-            case 9:
+            case 70:
+            case 80:
+            case 90:
 
                 mat.Add(matLife[3]);
                 meshRenderer.SetMaterials(mat);
 
                 break;
-            case 10:
+            case 100:
 
                 mat.Add(matLife[4]);
                 meshRenderer.SetMaterials(mat);

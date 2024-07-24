@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 188aa0003a0e42f42b64972ec0175708, type: 3}
   m_Name: Skeleton
   m_EditorClassIdentifier: 
-  maxHp: 5
+  maxHp: 50
   animOverride: {fileID: 0}
   attackType:
   - {fileID: 11400000, guid: b46f3237223c4234b965c125d2cdcdc5, type: 2}

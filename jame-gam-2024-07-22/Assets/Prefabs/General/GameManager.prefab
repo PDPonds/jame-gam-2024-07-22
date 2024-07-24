@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f32f7f691dfdafe449cd5fc195b0699e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneShakeDuration: 0.15
+  sceneShakeMagnitude: 0.4
 --- !u!114 &6981924249544571991
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     #endregion
 
     [SerializeField] Transform visual;
-    int curHp;
+    float curHp;
 
     [Header("===== Enemy ======")]
     [SerializeField] Enemy enemy;
@@ -202,18 +202,19 @@ public class EnemyController : MonoBehaviour, IDamageable
         curHp = enemy.maxHp;
     }
 
-    public void Hit()
+    public void Hit(float damage)
     {
-        curHp--;
+        curHp -= damage;
+        PlayerManager.Instance.GetRepair();
         if (curHp <= 0)
         {
             SwithBehavoir(EnemyBehavior.Death);
         }
     }
 
-    public void Heal()
+    public void Heal(float amount)
     {
-        curHp++;
+        curHp -= amount;
         if (curHp >= enemy.maxHp)
         {
             ResetHP();
@@ -313,7 +314,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         Collider[] cols = Physics.OverlapSphere(transform.position, area, playerMask);
         if (cols.Length > 0)
         {
-            PlayerManager.Instance.Hit();
+            PlayerManager.Instance.Hit(around.damage);
         }
     }
 

@@ -2,9 +2,9 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    void Hit();
+    void Hit(float damage);
 
-    void Heal();
+    void Heal(float amount);
 
     void Death();
 

@@ -15,6 +15,7 @@ MonoBehaviour:
   wandIcon: {fileID: 0}
   skillArea: 0.5
   skillRange: 2
-  decayDamage: 0
-  toGetRepairMana: 10
-  toUseRepairMana: 15
+  decayDamage: 15
+  toGetRepair: 5
+  toUseRepair: 5
+  repairAmount: 10

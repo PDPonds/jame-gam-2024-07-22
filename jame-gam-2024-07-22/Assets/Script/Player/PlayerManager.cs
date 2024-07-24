@@ -19,8 +19,9 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     public Wand curWand;
 
     [Header("===== HP =====")]
-    public int maxHp;
-    [HideInInspector] public int curHp;
+    public float maxHp;
+    [HideInInspector] public float curHp;
+    [SerializeField] float decreaseHpPerTime;
 
     [Header("===== Mouse =====")]
     [SerializeField] LayerMask mouseMask;
@@ -47,11 +48,8 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     [HideInInspector] public float curDecayDelay;
 
     [Header("- Repair Skill")]
-    public float maxRepairMana;
     public float repairDelay;
     [HideInInspector] public float curRepairDelay;
-
-    [HideInInspector] public float curRepairMana;
 
     List<IDamageable> allIDamageable = new List<IDamageable>();
 
@@ -69,6 +67,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
     private void Update()
     {
+        DecreaseHP();
         MoveHandle();
 
         MoveIndicator();
@@ -203,37 +202,34 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     void ResetHP()
     {
         curHp = maxHp;
-        PlayerUI.Instance.UpdateHPFill();
     }
 
-    void TakeDamage()
+    void TakeDamage(float damage)
     {
-        curHp--;
-        PlayerUI.Instance.UpdateHPFill();
+        curHp -= damage;
         if (curHp <= 0)
         {
             Death();
         }
     }
 
-    void RestoreHP()
+    void RestoreHP(float amount)
     {
-        curHp++;
-        PlayerUI.Instance.UpdateHPFill();
+        curHp += amount;
         if (curHp > maxHp)
         {
             ResetHP();
         }
     }
 
-    public void Hit()
+    public void Hit(float damage)
     {
-        TakeDamage();
+        TakeDamage(damage);
     }
 
-    public void Heal()
+    public void Heal(float amount)
     {
-        RestoreHP();
+        RestoreHP(amount);
     }
 
     public void Death()
@@ -321,7 +317,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
                 for (int i = 0; i < allIDamageable.Count; i++)
                 {
                     IDamageable iD = allIDamageable[i];
-                    iD.Hit();
+                    iD.Hit(curWand.decayDamage);
                 }
             }
 
@@ -333,7 +329,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     {
         if (CanUseRepair() && curRepairDelay <= 0)
         {
-            RemoveRepairMana();
+            curHp -= curWand.toUseRepair;
             AttackAnimHandle();
 
             allIDamageable = GetAllIDamageable();
@@ -342,7 +338,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
                 for (int i = 0; i < allIDamageable.Count; i++)
                 {
                     IDamageable iD = allIDamageable[i];
-                    iD.Heal();
+                    iD.Heal(curWand.repairAmount);
                 }
             }
 
@@ -396,27 +392,26 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
     #endregion
 
-    #region Repair Mana
+    #region Repair
 
-    public void AddRepairMana()
+    void DecreaseHP()
     {
-        curRepairMana += curWand.toGetRepairMana;
-        PlayerUI.Instance.UpdateRepaireManaFill();
-        if (curRepairMana >= maxRepairMana)
-        {
-            curRepairMana = maxRepairMana;
-        }
-    }
-
-    public void RemoveRepairMana()
-    {
-        curRepairMana -= curWand.toUseRepairMana;
-        PlayerUI.Instance.UpdateRepaireManaFill();
+        curHp -= Time.deltaTime * decreaseHpPerTime;
+        PlayerUI.Instance.UpdateHPFill();
     }
 
     public bool CanUseRepair()
     {
-        return curRepairMana >= curWand.toUseRepairMana;
+        return curHp > curWand.toUseRepair;
+    }
+
+    public void GetRepair()
+    {
+        curHp += curWand.toGetRepair;
+        if(curHp >= maxHp)
+        {
+            ResetHP();
+        }
     }
 
     #endregion

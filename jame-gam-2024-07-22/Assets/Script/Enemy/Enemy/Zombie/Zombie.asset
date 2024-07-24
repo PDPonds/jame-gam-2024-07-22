@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 188aa0003a0e42f42b64972ec0175708, type: 3}
   m_Name: Zombie
   m_EditorClassIdentifier: 
-  maxHp: 8
+  maxHp: 80
   animOverride: {fileID: 0}
   attackType:
   - {fileID: 11400000, guid: 28b830967bc581e408d60fcae1d8a523, type: 2}

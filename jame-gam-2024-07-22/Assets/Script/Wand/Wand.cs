@@ -16,8 +16,10 @@ public class Wand : ScriptableObject
     [Header("===== Damage =====")]
     [Header("- Decay")]
     public float decayDamage;
+
     [Header("- Repair")]
-    public float toGetRepairMana;
-    public float toUseRepairMana;
+    public float toGetRepair;
+    public float toUseRepair;
+    public float repairAmount;
 
 }
