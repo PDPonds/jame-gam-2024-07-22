@@ -1,5 +1,88 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &213753747053377878
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3682494225580391362}
+  - component: {fileID: 8238487896876218050}
+  - component: {fileID: 2779155774432747272}
+  m_Layer: 9
+  m_Name: RepairInfo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3682494225580391362
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213753747053377878}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1555946655722941598}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!33 &8238487896876218050
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213753747053377878}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2779155774432747272
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213753747053377878}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 7f6bbcaa28a7e514faad0f4056f9d8f7, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &381989751009989098
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,7 +96,7 @@ GameObject:
   - component: {fileID: 417980552770229076}
   - component: {fileID: 2212349592328797082}
   m_Layer: 9
-  m_Name: Ground
+  m_Name: StoneGround
   m_TagString: GroundTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,6 +116,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 578960374647261047}
+  - {fileID: 3682494225580391362}
   - {fileID: 408553912105716098}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -71,6 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outline: {fileID: 5337397963808751863}
   visusal: {fileID: 578960374647261047}
+  repairVisual: {fileID: 3682494225580391362}
   maxHp: 100
   sideMat: {fileID: 2100000, guid: 13390756a9f6bd948b84e6f4b0c63c00, type: 2}
   matLife:
@@ -79,6 +164,13 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 3422b167049f2e043a593dfe3bfae5b0, type: 2}
   - {fileID: 2100000, guid: baa45e2c7cdc44d48bb3ba32df1f567b, type: 2}
   - {fileID: 2100000, guid: 95b18056afc7c434ba3d8b48e7e08a1b, type: 2}
+  matRepair:
+  - {fileID: 2100000, guid: 7f6bbcaa28a7e514faad0f4056f9d8f7, type: 2}
+  - {fileID: 2100000, guid: c3807b36626334f489b5ed0863b93361, type: 2}
+  - {fileID: 2100000, guid: c867f274b7fd65949bb7428744e6e0ba, type: 2}
+  - {fileID: 2100000, guid: cd0894abb089c1e4786f6247dc04a79c, type: 2}
+  - {fileID: 2100000, guid: 04aa54849c20ba244bed559658222546, type: 2}
+  - {fileID: 2100000, guid: 39d791f7cf55fd147a504cb8cfa09e0f, type: 2}
   state: 0
 --- !u!54 &2212349592328797082
 Rigidbody:

@@ -12,24 +12,29 @@ public class GroundObject : MonoBehaviour, IDamageable
 
     #region Ref
 
-    MeshRenderer meshRenderer;
+    MeshRenderer groundMeshRen;
+    MeshRenderer repairMeshRen;
 
     #endregion
 
     [SerializeField] GameObject outline;
 
     [SerializeField] Transform visusal;
+    [SerializeField] Transform repairVisual;
+
     [SerializeField] float maxHp;
     float curHp;
 
     [SerializeField] Material sideMat;
     [SerializeField] Material[] matLife;
+    [SerializeField] Material[] matRepair;
 
     [SerializeField] GroundObjectState state;
 
     private void Awake()
     {
-        meshRenderer = visusal.GetComponent<MeshRenderer>();
+        groundMeshRen = visusal.GetComponent<MeshRenderer>();
+        repairMeshRen = repairVisual.GetComponent<MeshRenderer>();
     }
 
     private void Start()
@@ -54,12 +59,14 @@ public class GroundObject : MonoBehaviour, IDamageable
     {
         curHp += damage;
         SetupMat();
+
         if (curHp >= maxHp)
         {
             ResetHP();
             if (IsState(GroundObjectState.Disable))
             {
                 SwitchState(GroundObjectState.Enable);
+                SetupMat();
             }
         }
     }
@@ -70,6 +77,7 @@ public class GroundObject : MonoBehaviour, IDamageable
         {
             curHp -= amount;
             SetupMat();
+
             PlayerManager.Instance.GetRepair();
             if (curHp <= 0)
             {
@@ -88,9 +96,11 @@ public class GroundObject : MonoBehaviour, IDamageable
         {
             case GroundObjectState.Enable:
                 visusal.gameObject.SetActive(true);
+                repairVisual.gameObject.SetActive(false);
                 break;
             case GroundObjectState.Disable:
                 visusal.gameObject.SetActive(false);
+                repairVisual.gameObject.SetActive(true);
                 break;
         }
 
@@ -124,47 +134,64 @@ public class GroundObject : MonoBehaviour, IDamageable
     void SetupMat()
     {
         List<Material> mat = new List<Material>();
-        mat.Add(sideMat);
-
-        switch (curHp)
+        if (state == GroundObjectState.Enable)
         {
-            case 10:
-            case 20:
 
+            mat.Add(sideMat);
+
+            if (curHp <= 20)
+            {
                 mat.Add(matLife[0]);
-                meshRenderer.SetMaterials(mat);
-
-                break;
-            case 30:
-            case 40:
-
+            }
+            else if (curHp > 20 && curHp <= 40)
+            {
                 mat.Add(matLife[1]);
-                meshRenderer.SetMaterials(mat);
-
-                break;
-            case 50:
-            case 60:
-
+            }
+            else if (curHp > 40 && curHp <= 60)
+            {
                 mat.Add(matLife[2]);
-                meshRenderer.SetMaterials(mat);
-
-                break;
-            case 70:
-            case 80:
-            case 90:
-
+            }
+            else if (curHp > 60 && curHp <= 90)
+            {
                 mat.Add(matLife[3]);
-                meshRenderer.SetMaterials(mat);
-
-                break;
-            case 100:
-
+            }
+            else if (curHp > 90 && curHp <= 100)
+            {
                 mat.Add(matLife[4]);
-                meshRenderer.SetMaterials(mat);
+            }
 
-                break;
+            groundMeshRen.SetMaterials(mat);
         }
+        else if (state == GroundObjectState.Disable)
+        {
+            if (curHp == 0)
+            {
+                repairMeshRen.material = matRepair[0];
+            }
+            else if (curHp > 0 && curHp <= 20)
+            {
+                repairMeshRen.material = matRepair[1];
 
+            }
+            else if (curHp > 20 && curHp <= 40)
+            {
+                repairMeshRen.material = matRepair[2];
+
+            }
+            else if (curHp > 40 && curHp <= 60)
+            {
+                repairMeshRen.material = matRepair[3];
+
+            }
+            else if (curHp > 60 && curHp <= 90)
+            {
+                repairMeshRen.material = matRepair[4];
+            }
+            else if (curHp > 90 && curHp <= 100)
+            {
+                repairMeshRen.material = matRepair[5];
+            }
+        }
     }
 
     #endregion
