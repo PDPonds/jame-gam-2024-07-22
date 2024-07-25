@@ -134,6 +134,7 @@ public class PlayerUI : Singleton<PlayerUI>
 
     public void ShowSelectWandPanel(Chest chest)
     {
+        Pause.Instance.PauseGame();
         curChest = chest;
         selectWandPanel.SetActive(true);
 
@@ -193,6 +194,7 @@ public class PlayerUI : Singleton<PlayerUI>
     void HideSelectWandPanel()
     {
         curChest.ChangeSpriteToOpenAready();
+        Pause.Instance.UnPauseGame();
         selectWandPanel.SetActive(false);
     }
 
