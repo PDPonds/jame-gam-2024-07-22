@@ -45149,113 +45149,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2112774534}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2116027964 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9189252557968011609, guid: 12daf6b17689bfe49a074f583e3bb6eb,
-    type: 3}
-  m_PrefabInstance: {fileID: 1037795933381268470}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2116027969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2116027964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e552bad225a343b47b0c02f8fcab4d0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: GroundDestroy
-    clip: {fileID: 8300000, guid: dd65d98e19f7fc94da8ee792f3dc65a1, type: 3}
-    audioGroup: {fileID: -7497446070054314888, guid: 43654116357549942aad25490d152f8b,
-      type: 2}
-    volume: 0.1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: BGS
-    clip: {fileID: 8300000, guid: 25d1ad750977f0e488974d67544c6d02, type: 3}
-    audioGroup: {fileID: -7497446070054314888, guid: 43654116357549942aad25490d152f8b,
-      type: 2}
-    volume: 0.25
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-  - name: ReverseGround
-    clip: {fileID: 8300000, guid: 6aeefe1055e95b8478d4eef30078f829, type: 3}
-    audioGroup: {fileID: -7497446070054314888, guid: 43654116357549942aad25490d152f8b,
-      type: 2}
-    volume: 0.15
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Decay
-    clip: {fileID: 8300000, guid: 43f652ff8a81b97488d8b274782c64df, type: 3}
-    audioGroup: {fileID: -7497446070054314888, guid: 43654116357549942aad25490d152f8b,
-      type: 2}
-    volume: 0.25
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Heal
-    clip: {fileID: 8300000, guid: 8b77a55b8d78d694ea93b56df30ceb31, type: 3}
-    audioGroup: {fileID: -7497446070054314888, guid: 43654116357549942aad25490d152f8b,
-      type: 2}
-    volume: 0.15
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: GroundTakeDamage
-    clip: {fileID: 8300000, guid: 797598ab791dc614cb3a84bcc9fc73f6, type: 3}
-    audioGroup: {fileID: -7497446070054314888, guid: 43654116357549942aad25490d152f8b,
-      type: 2}
-    volume: 0.1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: BatShoot
-    clip: {fileID: 8300000, guid: 6da2e8cf7ad7e544f827645ebf9b836d, type: 3}
-    audioGroup: {fileID: -7497446070054314888, guid: 43654116357549942aad25490d152f8b,
-      type: 2}
-    volume: 0.25
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: MushroomExplosion
-    clip: {fileID: 8300000, guid: ec5a41a3a78d6cb49a45b1d143dd5f75, type: 3}
-    audioGroup: {fileID: -7497446070054314888, guid: 43654116357549942aad25490d152f8b,
-      type: 2}
-    volume: 0.25
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: UIClick
-    clip: {fileID: 8300000, guid: a5072f680e651cc479dfa76699a8626e, type: 3}
-    audioGroup: {fileID: -7497446070054314888, guid: 43654116357549942aad25490d152f8b,
-      type: 2}
-    volume: 0.25
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: OpenUI
-    clip: {fileID: 8300000, guid: 2dbe207936e28ed4ea25b271cc53fbf0, type: 3}
-    audioGroup: {fileID: -7497446070054314888, guid: 43654116357549942aad25490d152f8b,
-      type: 2}
-    volume: 0.25
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Walk
-    clip: {fileID: 8300000, guid: 30536b62b059ca746b73b79a56e090c3, type: 3}
-    audioGroup: {fileID: -7497446070054314888, guid: 43654116357549942aad25490d152f8b,
-      type: 2}
-    volume: 0.25
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
 --- !u!1001 &2118369244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45960,16 +45853,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 324378056539450047, guid: 03bc1ed4a886c414285f882f942217ca,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1999547969968103355, guid: 03bc1ed4a886c414285f882f942217ca,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2179064116455555044, guid: 03bc1ed4a886c414285f882f942217ca,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -46030,16 +45913,6 @@ PrefabInstance:
       propertyPath: skillIndicator
       value: 
       objectReference: {fileID: 1446500445}
-    - target: {fileID: 2679661684352818719, guid: 03bc1ed4a886c414285f882f942217ca,
-        type: 3}
-      propertyPath: textSpeed
-      value: 0.025
-      objectReference: {fileID: 0}
-    - target: {fileID: 4739781985962352381, guid: 03bc1ed4a886c414285f882f942217ca,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7562847330576848105, guid: 03bc1ed4a886c414285f882f942217ca,
         type: 3}
       propertyPath: m_Name
@@ -46058,12 +45931,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6981924249544571991, guid: 12daf6b17689bfe49a074f583e3bb6eb,
-        type: 3}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 23800000, guid: b5b3b14db8781de4e9ba76b29f7f8d73,
-        type: 2}
     - target: {fileID: 8986974677113016088, guid: 12daf6b17689bfe49a074f583e3bb6eb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -46122,11 +45989,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9189252557968011609, guid: 12daf6b17689bfe49a074f583e3bb6eb,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2116027969}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12daf6b17689bfe49a074f583e3bb6eb, type: 3}
 --- !u!1001 &2608303084160563081
 PrefabInstance:

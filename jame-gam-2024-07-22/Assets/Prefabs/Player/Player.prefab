@@ -6249,7 +6249,7 @@ RectTransform:
   m_GameObject: {fileID: 1719606842856917318}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 854600690972167711}
@@ -6481,7 +6481,7 @@ RectTransform:
   m_GameObject: {fileID: 1795881150725121688}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6727881143134921234}
@@ -7268,7 +7268,7 @@ RectTransform:
   m_GameObject: {fileID: 2567175826314038972}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8540473404001509960}
@@ -7402,7 +7402,7 @@ RectTransform:
   m_GameObject: {fileID: 2745105540151036924}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8045182611171063236}
@@ -8141,7 +8141,7 @@ RectTransform:
   m_GameObject: {fileID: 3723641548883102656}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3601559000701160}
@@ -9477,7 +9477,7 @@ RectTransform:
   m_GameObject: {fileID: 5774516475029630608}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 981417112640168874}
@@ -9899,7 +9899,7 @@ RectTransform:
   m_GameObject: {fileID: 6205527382617091928}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4497976379497679063}
@@ -10423,10 +10423,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1022195516698330902}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -125}
-  m_SizeDelta: {x: 0, y: 150}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 500, y: 0}
+  m_SizeDelta: {x: 900, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7773017521786169430
 CanvasRenderer:
@@ -10813,6 +10813,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   moveInput: {x: 0, y: 0}
   mousePos: {x: 0, y: 0}
+  sceneShake: {fileID: 0}
   visaul: {fileID: 8989737054300617563}
   curWand: {fileID: 11400000, guid: 1479b852fc805f049aba24ad0b08a72d, type: 2}
   maxHp: 100
@@ -10908,6 +10909,9 @@ MonoBehaviour:
   statusDown: {fileID: 1450772720, guid: 7ab96326fb2bbf14a964de242ab10d2b, type: 3}
   statusEquals: {fileID: -175562200, guid: 7ab96326fb2bbf14a964de242ab10d2b, type: 3}
   pausePanel: {fileID: 844358282147879613}
+  pauseText: {fileID: 8623255014673837409}
+  defeatText: {fileID: 2745105540151036924}
+  victoryText: {fileID: 2567175826314038972}
   defeatPanel: {fileID: 6124047349808802770}
   victoryPanel: {fileID: 5282194077933025055}
   restartInDefeatGame: {fileID: 6601126767012268066}
@@ -10941,7 +10945,7 @@ MonoBehaviour:
   - tutorialSprite: {fileID: 21300000, guid: 21e5c128927c2804ca036702ff427cc9, type: 3}
     lines: There are new treasures to discover too.
   openDoorText: It seems like the door hasn't opened yet.
-  textSpeed: 0.1
+  textSpeed: 0.025
 --- !u!1 &7570319602919929339
 GameObject:
   m_ObjectHideFlags: 0
@@ -11553,7 +11557,7 @@ RectTransform:
   m_GameObject: {fileID: 8625581367871384070}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6469548525878829272}

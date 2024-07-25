@@ -72,7 +72,7 @@ public class Dialogue : Singleton<Dialogue>
 
     IEnumerator TypeLine()
     {
-        tutorialImage.gameObject.SetActive(true);
+        LeanTween.scale(tutorialImage.gameObject, Vector3.one, 0.25f).setEaseInOutCubic();
         tutorialImage.sprite = tutorialSlot[dialogIndex].tutorialSprite;
         foreach (char c in tutorialSlot[dialogIndex].lines.ToCharArray())
         {
@@ -83,7 +83,7 @@ public class Dialogue : Singleton<Dialogue>
 
     IEnumerator TypeDoor()
     {
-        tutorialImage.gameObject.SetActive(false);
+        LeanTween.scale(tutorialImage.gameObject, Vector3.zero, 0.25f).setEaseInOutCubic();
         foreach (char c in openDoorText.ToCharArray())
         {
             text.text += c;
@@ -108,6 +108,7 @@ public class Dialogue : Singleton<Dialogue>
         text.text = string.Empty;
         Pause.Instance.UnPauseGame();
         dialoguePanel.SetActive(false);
+        LeanTween.scale(tutorialImage.gameObject, Vector3.zero, 0.25f).setEaseInOutCubic();
 
         if (tutorialIndex == 2)
         {
@@ -131,6 +132,7 @@ public class Dialogue : Singleton<Dialogue>
         text.text = string.Empty;
         Pause.Instance.UnPauseGame();
         dialoguePanel.SetActive(false);
+        LeanTween.scale(tutorialImage.gameObject, Vector3.zero, 0.25f).setEaseInOutCubic();
     }
 
     public bool IsDialoguePanelOpen()

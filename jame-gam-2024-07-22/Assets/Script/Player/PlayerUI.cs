@@ -66,7 +66,10 @@ public class PlayerUI : Singleton<PlayerUI>
 
     [Header("- Pause")]
     [SerializeField] GameObject pausePanel;
-    [Header("- Defeat")]
+    [SerializeField] Transform pauseText;
+    [Header("- Gmae Result")]
+    [SerializeField] GameObject defeatText;
+    [SerializeField] GameObject victoryText;
     [SerializeField] GameObject defeatPanel;
     [SerializeField] GameObject victoryPanel;
     [SerializeField] Button restartInDefeatGame;
@@ -147,6 +150,9 @@ public class PlayerUI : Singleton<PlayerUI>
 
         UpdateSelectWandInfo();
 
+        LeanTween.scale(selectNewWand.gameObject, Vector3.one, 0.25f).setEaseInOutCubic();
+        LeanTween.scale(cancleNewWand.gameObject, Vector3.one, 0.25f).setEaseInOutCubic();
+
     }
 
     void UpdateSelectWandInfo()
@@ -195,11 +201,15 @@ public class PlayerUI : Singleton<PlayerUI>
 
     void HideSelectWandPanel()
     {
-        AudioManager.Instance.PlayOneShot("UIClick");
-        curChest.ChangeSpriteToOpenAready();
-        Pause.Instance.UnPauseGame();
-        selectWandPanel.SetActive(false);
-        AudioManager.Instance.PlayOneShot("OpenUI");
+        LeanTween.scale(selectNewWand.gameObject, Vector3.zero, 0.25f).setEaseInOutCubic();
+        LeanTween.scale(cancleNewWand.gameObject, Vector3.zero, 0.25f).setEaseInOutCubic().setOnComplete(() =>
+        {
+            AudioManager.Instance.PlayOneShot("UIClick");
+            curChest.ChangeSpriteToOpenAready();
+            Pause.Instance.UnPauseGame();
+            selectWandPanel.SetActive(false);
+            AudioManager.Instance.PlayOneShot("OpenUI");
+        });
     }
 
     public void UpdateCurWand()
@@ -211,18 +221,22 @@ public class PlayerUI : Singleton<PlayerUI>
     {
         AudioManager.Instance.PlayOneShot("UIClick");
         pausePanel.SetActive(true);
+        LeanTween.scale(pauseText.gameObject, Vector3.one, 0.25f).setEaseInOutCubic();
     }
 
     public void HidePause()
     {
         AudioManager.Instance.PlayOneShot("UIClick");
-        pausePanel.SetActive(false);
+        LeanTween.scale(pauseText.gameObject, Vector3.zero, 0.25f).setEaseInOutCubic()
+            .setOnComplete(() => pausePanel.SetActive(false));
     }
 
     public void ShowDefeat()
     {
         defeatPanel.SetActive(true);
         AudioManager.Instance.PlayOneShot("OpenUI");
+        LeanTween.scale(defeatText, Vector3.one, 0.25f).setEaseInOutCubic();
+        LeanTween.scale(restartInDefeatGame.gameObject, Vector3.one, 0.25f).setEaseInOutCubic();
     }
 
     void RestartGame()
@@ -233,20 +247,20 @@ public class PlayerUI : Singleton<PlayerUI>
 
     public void ShowDoorInfomation()
     {
-        AudioManager.Instance.PlayOneShot("OpenUI");
         doorInfomation.SetActive(true);
     }
 
     public void HideDoorInfomation()
     {
         doorInfomation.SetActive(false);
-        AudioManager.Instance.PlayOneShot("OpenUI");
     }
 
     public void ShowVictory()
     {
         AudioManager.Instance.PlayOneShot("OpenUI");
         victoryPanel.SetActive(true);
+        LeanTween.scale(victoryText, Vector3.one, 0.25f).setEaseInOutCubic();
+        LeanTween.scale(restartInVictoryGame.gameObject, Vector3.one, 0.25f).setEaseInOutCubic();
     }
 
     public void UpdateDoorCount()
