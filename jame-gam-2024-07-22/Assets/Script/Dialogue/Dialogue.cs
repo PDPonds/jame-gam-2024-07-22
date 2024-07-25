@@ -58,7 +58,7 @@ public class Dialogue : Singleton<Dialogue>
         {
             if (text.text != openDoorText)
             {
-                EndLine();
+                EndDoorLine();
             }
             else
             {
@@ -92,6 +92,11 @@ public class Dialogue : Singleton<Dialogue>
     {
         StopAllCoroutines();
         text.text = tutorialSlot[dialogIndex].lines;
+    }
+    void EndDoorLine()
+    {
+        StopAllCoroutines();
+        text.text = openDoorText;
     }
 
     void EndCurTutorial()

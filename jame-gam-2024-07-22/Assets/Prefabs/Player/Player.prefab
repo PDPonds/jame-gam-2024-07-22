@@ -9003,7 +9003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8540473404001509960
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10586,7 +10586,9 @@ MonoBehaviour:
   statusEquals: {fileID: -175562200, guid: 7ab96326fb2bbf14a964de242ab10d2b, type: 3}
   pausePanel: {fileID: 844358282147879613}
   defeatPanel: {fileID: 6124047349808802770}
-  restartGame: {fileID: 6601126767012268066}
+  victoryPanel: {fileID: 5282194077933025055}
+  restartInDefeatGame: {fileID: 6601126767012268066}
+  restartInVictoryGame: {fileID: 6285412725731912956}
   doorInfomation: {fileID: 5302250881659848274}
 --- !u!114 &2679661684352818719
 MonoBehaviour:
@@ -10613,6 +10615,7 @@ MonoBehaviour:
     lines: Grants mana power to revive things.
   - tutorialSprite: {fileID: 21300000, guid: eb30487e4db73c8408e1271275a324c8, type: 3}
     lines: There are new treasures to discover too.
+  openDoorText: It seems like the door hasn't opened yet.
   textSpeed: 0.1
 --- !u!1 &7570319602919929339
 GameObject:

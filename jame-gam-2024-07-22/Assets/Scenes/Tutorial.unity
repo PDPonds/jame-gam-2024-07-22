@@ -23803,6 +23803,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1125450143}
+  - component: {fileID: 1125450144}
+  - component: {fileID: 1125450147}
+  - component: {fileID: 1125450146}
+  - component: {fileID: 1125450145}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -23825,6 +23829,90 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1125450144
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125450142}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 7, z: 61}
+  m_Center: {x: 21, y: -1, z: 25}
+--- !u!65 &1125450145
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125450142}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 50, y: 7, z: 1}
+  m_Center: {x: -4.5, y: -1, z: 56}
+--- !u!65 &1125450146
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125450142}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 50, y: 7, z: 1}
+  m_Center: {x: -4.5, y: -1, z: -6}
+--- !u!65 &1125450147
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125450142}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 7, z: 61}
+  m_Center: {x: -30, y: -1, z: 25}
 --- !u!1001 &1126567395
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42559,8 +42647,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5, y: 1, z: 20}
-  m_Center: {x: 0, y: -4, z: 10}
+  m_Size: {x: 52, y: 1, z: 62}
+  m_Center: {x: -4.5, y: -4, z: 25}
 --- !u!1001 &2000291003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45738,7 +45826,7 @@ PrefabInstance:
     - target: {fileID: 2179064116455555044, guid: 03bc1ed4a886c414285f882f942217ca,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2179064116455555044, guid: 03bc1ed4a886c414285f882f942217ca,
         type: 3}
@@ -45785,11 +45873,6 @@ PrefabInstance:
       propertyPath: skillIndicator
       value: 
       objectReference: {fileID: 1446500445}
-    - target: {fileID: 2679661684352818719, guid: 03bc1ed4a886c414285f882f942217ca,
-        type: 3}
-      propertyPath: openDoorText
-      value: It seems like the door hasn't opened yet.
-      objectReference: {fileID: 0}
     - target: {fileID: 3441563447103250412, guid: 03bc1ed4a886c414285f882f942217ca,
         type: 3}
       propertyPath: m_IsActive
@@ -45806,11 +45889,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4792351215588871177, guid: 03bc1ed4a886c414285f882f942217ca,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5282194077933025055, guid: 03bc1ed4a886c414285f882f942217ca,
         type: 3}
       propertyPath: m_IsActive
       value: 0

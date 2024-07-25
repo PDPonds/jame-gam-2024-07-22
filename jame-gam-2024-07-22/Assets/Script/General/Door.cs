@@ -17,7 +17,7 @@ public class Door : Singleton<Door>
     {
         if (collision.collider.CompareTag("Player"))
         {
-            if (doorPos1.GetChild(0) != null && doorPos2.GetChild(0) != null && doorPos3.GetChild(0) != null)
+            if (doorPos1.childCount > 0 && doorPos2.childCount > 0 && doorPos3.childCount > 0)
             {
                 PlayerUI.Instance.ShowVictory();
                 Pause.Instance.PauseGame();
