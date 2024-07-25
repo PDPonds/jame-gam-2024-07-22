@@ -246,6 +246,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     public void Hit(float damage)
     {
         curHp -= damage;
+        PlayerManager.Instance.Shake();
         PlayerManager.Instance.GetRepair();
         if (curHp <= 0)
         {

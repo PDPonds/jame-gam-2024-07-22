@@ -2378,6 +2378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2271007}
+  offset: {x: 2, y: 2.5, z: -2}
   smoothSpeed: 0.125
 --- !u!1001 &89488600
 PrefabInstance:
@@ -7559,6 +7560,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7634,7 +7636,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.35355338, y: -0.35355338, z: 0.1464466, w: 0.8535535}
-  m_LocalPosition: {x: 2, y: 2.5, z: -2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7684,6 +7686,20 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &330585548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3034878c85ad90c45adc910170067f07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.15
+  magintude: 0.05
 --- !u!1001 &338163522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45887,6 +45903,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2633504802801244163, guid: 03bc1ed4a886c414285f882f942217ca,
+        type: 3}
+      propertyPath: sceneShake
+      value: 
+      objectReference: {fileID: 330585548}
     - target: {fileID: 2633504802801244163, guid: 03bc1ed4a886c414285f882f942217ca,
         type: 3}
       propertyPath: skillIndicator

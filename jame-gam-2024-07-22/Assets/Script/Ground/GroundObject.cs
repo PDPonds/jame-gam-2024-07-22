@@ -63,6 +63,7 @@ public class GroundObject : MonoBehaviour, IDamageable
     public void Death()
     {
         SwitchState(GroundObjectState.Disable);
+        PlayerManager.Instance.Shake();
         if (Dialogue.tutorialIndex == 3)
         {
             Dialogue.tutorialIndex = 4;
@@ -84,6 +85,7 @@ public class GroundObject : MonoBehaviour, IDamageable
             {
                 SwitchState(GroundObjectState.Enable);
                 SetupMat();
+                PlayerManager.Instance.Shake();
 
                 if (Dialogue.tutorialIndex == 4)
                 {

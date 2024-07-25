@@ -14,6 +14,8 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
     [HideInInspector] public Vector2 moveInput;
     [HideInInspector] public Vector2 mousePos;
+    [Header("===== SceneShake =====")]
+    [SerializeField] SceneShake sceneShake;
 
     [SerializeField] Transform visaul;
     [Header("===== Wand =====")]
@@ -220,6 +222,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     void TakeDamage(float damage)
     {
         curHp -= damage;
+        PlayerManager.Instance.Shake();
         if (curHp <= 0)
         {
             Death();
@@ -474,6 +477,11 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(skillIndicator.position, curWand.skillArea);
+    }
+
+    public void Shake()
+    {
+        sceneShake.Shake();
     }
 
 }
