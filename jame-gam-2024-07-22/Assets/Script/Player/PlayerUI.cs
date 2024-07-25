@@ -75,6 +75,8 @@ public class PlayerUI : Singleton<PlayerUI>
 
     [Header("- Door")]
     [SerializeField] GameObject doorInfomation;
+    public GameObject doorCountBorder;
+    [SerializeField] TextMeshProUGUI doorCountText;
 
     private void Start()
     {
@@ -233,4 +235,10 @@ public class PlayerUI : Singleton<PlayerUI>
     {
         victoryPanel.SetActive(true);
     }
+
+    public void UpdateDoorCount()
+    {
+        doorCountText.text = $"{Door.Instance.count} / 3";
+    }
+
 }

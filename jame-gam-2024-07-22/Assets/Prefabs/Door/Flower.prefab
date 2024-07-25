@@ -74,8 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
-    type: 3}
+  m_Sprite: {fileID: 1272382904, guid: 7df4fd5e9188e5f468aaa0928b8abc41, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -198,5 +197,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visual: {fileID: 4290228359565979351}
-  freshFlower: {fileID: 21300000, guid: 6e438958b636c114f8eaa264b4180212, type: 3}
+  freshFlower: {fileID: 909921430, guid: 7df4fd5e9188e5f468aaa0928b8abc41, type: 3}
   spawnParticlePoint: {fileID: 6566489860128281675}

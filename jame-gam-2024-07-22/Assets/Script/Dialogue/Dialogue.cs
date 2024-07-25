@@ -115,6 +115,8 @@ public class Dialogue : Singleton<Dialogue>
         else if (tutorialIndex == 3)
         {
             PlayerManager.Instance.skillIndicator.gameObject.SetActive(true);
+            PlayerUI.Instance.doorCountBorder.SetActive(true);
+            PlayerUI.Instance.UpdateDoorCount();
         }
 
     }

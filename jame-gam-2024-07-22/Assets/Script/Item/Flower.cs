@@ -29,6 +29,8 @@ public class Flower : MonoBehaviour, IDamageable
         if (!isFresh)
         {
             Door.Instance.count++;
+            PlayerUI.Instance.UpdateDoorCount();
+
             spriteRender.sprite = freshFlower;
             isFresh = true;
 
