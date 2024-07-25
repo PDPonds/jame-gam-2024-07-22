@@ -26,6 +26,7 @@ public class Dialogue : Singleton<Dialogue>
     {
         if (dialogIndex < tutorialSlot.Length)
         {
+            AudioManager.Instance.PlayOneShot("OpenUI");
             text.text = string.Empty;
             dialoguePanel.SetActive(true);
             Pause.Instance.PauseGame();
@@ -35,6 +36,7 @@ public class Dialogue : Singleton<Dialogue>
 
     public void StartDoor()
     {
+        AudioManager.Instance.PlayOneShot("OpenUI");
         text.text = string.Empty;
         dialoguePanel.SetActive(true);
         Pause.Instance.PauseGame();
@@ -43,6 +45,7 @@ public class Dialogue : Singleton<Dialogue>
 
     public void SpaceOrClickOnDialog()
     {
+        AudioManager.Instance.PlayOneShot("UIClick");
         if (tutorialImage.gameObject.activeSelf)
         {
             if (text.text != tutorialSlot[dialogIndex].lines)
@@ -110,6 +113,8 @@ public class Dialogue : Singleton<Dialogue>
         {
             tutorialIndex = 3;
             PlayerUI.Instance.decaySkillBorder.SetActive(true);
+            PlayerUI.Instance.dashSkillBorder.SetActive(true);
+
             StartTutorial();
         }
         else if (tutorialIndex == 3)

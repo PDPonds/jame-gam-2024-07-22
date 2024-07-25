@@ -134,6 +134,7 @@ public class PlayerUI : Singleton<PlayerUI>
 
     public void ShowSelectWandPanel(Chest chest)
     {
+        AudioManager.Instance.PlayOneShot("OpenUI");
         Pause.Instance.PauseGame();
         curChest = chest;
         selectWandPanel.SetActive(true);
@@ -187,15 +188,18 @@ public class PlayerUI : Singleton<PlayerUI>
     void SelectNewWand(Wand wand)
     {
         PlayerManager.Instance.curWand = wand;
+        AudioManager.Instance.PlayOneShot("UIClick");
         UpdateCurWand();
         HideSelectWandPanel();
     }
 
     void HideSelectWandPanel()
     {
+        AudioManager.Instance.PlayOneShot("UIClick");
         curChest.ChangeSpriteToOpenAready();
         Pause.Instance.UnPauseGame();
         selectWandPanel.SetActive(false);
+        AudioManager.Instance.PlayOneShot("OpenUI");
     }
 
     public void UpdateCurWand()
@@ -205,36 +209,43 @@ public class PlayerUI : Singleton<PlayerUI>
 
     public void ShowPause()
     {
+        AudioManager.Instance.PlayOneShot("UIClick");
         pausePanel.SetActive(true);
     }
 
     public void HidePause()
     {
+        AudioManager.Instance.PlayOneShot("UIClick");
         pausePanel.SetActive(false);
     }
 
     public void ShowDefeat()
     {
         defeatPanel.SetActive(true);
+        AudioManager.Instance.PlayOneShot("OpenUI");
     }
 
     void RestartGame()
     {
+        AudioManager.Instance.PlayOneShot("UIClick");
         SceneManager.LoadScene(0);
     }
 
     public void ShowDoorInfomation()
     {
+        AudioManager.Instance.PlayOneShot("OpenUI");
         doorInfomation.SetActive(true);
     }
 
     public void HideDoorInfomation()
     {
         doorInfomation.SetActive(false);
+        AudioManager.Instance.PlayOneShot("OpenUI");
     }
 
     public void ShowVictory()
     {
+        AudioManager.Instance.PlayOneShot("OpenUI");
         victoryPanel.SetActive(true);
     }
 

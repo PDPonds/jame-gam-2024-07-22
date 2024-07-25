@@ -344,6 +344,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         GameObject go = Instantiate(curAttackType.skillParticle, spawnSkillPoint.position, Quaternion.identity);
         RangeSkillObject rangeObj = go.GetComponent<RangeSkillObject>();
         rangeObj.Setup(transform.forward, (RangeAttack)curAttackType);
+        AudioManager.Instance.PlayOneShot("BatShoot");
     }
 
     void AttactPlayerAroundUser()
@@ -353,6 +354,8 @@ public class EnemyController : MonoBehaviour, IDamageable
 
         GameObject particle = Instantiate(around.skillParticle, transform.position, Quaternion.identity);
         Destroy(particle, 1f);
+
+        AudioManager.Instance.PlayOneShot("MushroomExplosion");
 
         Collider[] cols = Physics.OverlapSphere(transform.position, area, playerMask);
         if (cols.Length > 0)

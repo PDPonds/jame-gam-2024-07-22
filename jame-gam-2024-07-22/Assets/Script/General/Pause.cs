@@ -27,6 +27,8 @@ public class Pause : Singleton<Pause>
 
         PlayerManager.Instance.enabled = false;
 
+        AudioManager.Instance.Pause("Walk");
+
         PlayerManager.Instance.rb.useGravity = false;
         PlayerManager.Instance.rb.velocity = Vector3.zero;
 

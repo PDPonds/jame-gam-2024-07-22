@@ -64,12 +64,12 @@ public class GroundObject : MonoBehaviour, IDamageable
     {
         SwitchState(GroundObjectState.Disable);
         PlayerManager.Instance.Shake();
+
         if (Dialogue.tutorialIndex == 3)
         {
-            Dialogue.tutorialIndex = 4;
             PlayerUI.Instance.repairSkillBorder.SetActive(true);
-            PlayerUI.Instance.dashSkillBorder.SetActive(true);
             Dialogue.Instance.StartTutorial();
+            Dialogue.tutorialIndex = 4;
         }
     }
 
@@ -81,6 +81,7 @@ public class GroundObject : MonoBehaviour, IDamageable
         if (curHp >= maxHp)
         {
             ResetHP();
+            AudioManager.Instance.PlayOneShot("ReverseGround");
             if (IsState(GroundObjectState.Disable))
             {
                 SwitchState(GroundObjectState.Enable);
@@ -103,9 +104,12 @@ public class GroundObject : MonoBehaviour, IDamageable
             curHp -= amount;
             SetupMat();
 
+            AudioManager.Instance.PlayOneShot("GroundTakeDamage");
+
             PlayerManager.Instance.GetRepair();
             if (curHp <= 0)
             {
+                AudioManager.Instance.PlayOneShot("GroundDestroy");
                 Death();
             }
         }

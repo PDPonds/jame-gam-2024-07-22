@@ -112,9 +112,12 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
             anim.SetBool("isWalk", true);
             if (moveInput.x > 0) spriteRenderer.flipX = false;
             else spriteRenderer.flipX = true;
+
+            AudioManager.Instance.Play("Walk");
         }
         else
         {
+            AudioManager.Instance.Pause("Walk");
             anim.SetBool("isWalk", false);
         }
     }
@@ -338,6 +341,8 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
                     InstancteTailParticle(decayParticle, pos);
                 }
 
+                AudioManager.Instance.PlayOneShot("Decay");
+
                 AttackAnimHandle();
 
                 if (allIDamageable.Count > 0)
@@ -362,7 +367,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
             {
                 curHp -= curWand.toUseHP;
                 AttackAnimHandle();
-
+                AudioManager.Instance.PlayOneShot("Heal");
                 if (GetWorldPosFormMouse(out Vector3 pos))
                 {
                     InstanceParticle(repairAndHealObjectParticel, pos, 1f);
@@ -463,6 +468,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     public void GetRepair()
     {
         curHp += curWand.toGetHP;
+        
         healParticle.SetActive(false);
         healParticle.SetActive(true);
         if (curHp >= maxHp)
