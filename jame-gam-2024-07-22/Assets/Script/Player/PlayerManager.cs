@@ -40,7 +40,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     [Header("===== Skill =====")]
     [Header("- Indicator")]
     [SerializeField] Transform skillRangeIndicator;
-    [SerializeField] Transform skillIndicator;
+    public Transform skillIndicator;
     [SerializeField] Transform spawnParticlePoint;
     [Header("- Detail")]
     [SerializeField] LayerMask skillMask;
@@ -59,6 +59,8 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
     [SerializeField] GameObject repairAndHealObjectParticel;
 
     List<IDamageable> allIDamageable = new List<IDamageable>();
+
+    [HideInInspector] public Vector3 checkPoint;
 
     private void Awake()
     {
@@ -121,12 +123,15 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
     public void Dash()
     {
-        if (curDashDelay <= 0)
+        if (Dialogue.tutorialIndex >= 4)
         {
-            Vector3 moveDir = new Vector3(moveInput.x, 0, moveInput.y);
-            StartCoroutine(dash(moveDir, dashForce, dashDuration));
-            DashAnimHandle();
-            curDashDelay = dashDelay;
+            if (curDashDelay <= 0)
+            {
+                Vector3 moveDir = new Vector3(moveInput.x, 0, moveInput.y);
+                StartCoroutine(dash(moveDir, dashForce, dashDuration));
+                DashAnimHandle();
+                curDashDelay = dashDelay;
+            }
         }
     }
 
@@ -242,7 +247,8 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
     public void Death()
     {
-        Debug.Log("Death");
+        Pause.Instance.PauseGame();
+        PlayerUI.Instance.ShowDefeat();
     }
 
     #endregion
@@ -251,15 +257,27 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
     void MoveIndicator()
     {
-        if (GetWorldPosFormMouse(out Vector3 pos))
+        if (Dialogue.tutorialIndex >= 3)
         {
-            pos.y = 0;
-            float dist = Vector3.Distance(transform.position, pos);
-            if (dist <= curWand.skillRange)
+            if (GetWorldPosFormMouse(out Vector3 pos))
             {
-                skillIndicator.transform.position = pos;
-                skillRangeIndicator.gameObject.SetActive(false);
+                pos.y = 0;
+                float dist = Vector3.Distance(transform.position, pos);
+                if (dist <= curWand.skillRange)
+                {
+                    skillIndicator.transform.position = pos;
+                    skillRangeIndicator.gameObject.SetActive(false);
 
+                }
+                else
+                {
+                    Vector3 dir = GetDirToMouse();
+                    Vector3 newPos = transform.position + dir * curWand.skillRange;
+                    newPos.y = 0;
+                    skillIndicator.transform.position = newPos;
+                    skillRangeIndicator.gameObject.SetActive(true);
+
+                }
             }
             else
             {
@@ -270,15 +288,6 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
                 skillRangeIndicator.gameObject.SetActive(true);
 
             }
-        }
-        else
-        {
-            Vector3 dir = GetDirToMouse();
-            Vector3 newPos = transform.position + dir * curWand.skillRange;
-            newPos.y = 0;
-            skillIndicator.transform.position = newPos;
-            skillRangeIndicator.gameObject.SetActive(true);
-
         }
     }
 
@@ -314,55 +323,61 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
     public void DecayObject()
     {
-        if (curDecayDelay <= 0)
+        if (Dialogue.tutorialIndex >= 3)
         {
-            allIDamageable = GetAllIDamageable();
-
-            if (GetWorldPosFormMouse(out Vector3 pos))
+            if (curDecayDelay <= 0)
             {
-                InstanceParticle(explosiveParticle, pos, 1f);
-                InstancteTailParticle(decayParticle, pos);
-            }
+                allIDamageable = GetAllIDamageable();
 
-            AttackAnimHandle();
-
-            if (allIDamageable.Count > 0)
-            {
-                for (int i = 0; i < allIDamageable.Count; i++)
+                if (GetWorldPosFormMouse(out Vector3 pos))
                 {
-                    IDamageable iD = allIDamageable[i];
-                    iD.Hit(curWand.decayDamage);
+                    InstanceParticle(explosiveParticle, pos, 1f);
+                    InstancteTailParticle(decayParticle, pos);
                 }
-            }
 
-            curDecayDelay = decayDelay;
+                AttackAnimHandle();
+
+                if (allIDamageable.Count > 0)
+                {
+                    for (int i = 0; i < allIDamageable.Count; i++)
+                    {
+                        IDamageable iD = allIDamageable[i];
+                        iD.Hit(curWand.decayDamage);
+                    }
+                }
+
+                curDecayDelay = decayDelay;
+            }
         }
     }
 
     public void RepairObject()
     {
-        if (CanUseRepair() && curRepairDelay <= 0)
+        if (Dialogue.tutorialIndex >= 4)
         {
-            curHp -= curWand.toUseHP;
-            AttackAnimHandle();
-
-            if (GetWorldPosFormMouse(out Vector3 pos))
+            if (CanUseRepair() && curRepairDelay <= 0)
             {
-                InstanceParticle(repairAndHealObjectParticel, pos, 1f);
-                InstancteTailParticle(repairParticle, pos);
-            }
+                curHp -= curWand.toUseHP;
+                AttackAnimHandle();
 
-            allIDamageable = GetAllIDamageable();
-            if (allIDamageable.Count > 0)
-            {
-                for (int i = 0; i < allIDamageable.Count; i++)
+                if (GetWorldPosFormMouse(out Vector3 pos))
                 {
-                    IDamageable iD = allIDamageable[i];
-                    iD.Heal(curWand.repairAmount);
+                    InstanceParticle(repairAndHealObjectParticel, pos, 1f);
+                    InstancteTailParticle(repairParticle, pos);
                 }
-            }
 
-            curRepairDelay = repairDelay;
+                allIDamageable = GetAllIDamageable();
+                if (allIDamageable.Count > 0)
+                {
+                    for (int i = 0; i < allIDamageable.Count; i++)
+                    {
+                        IDamageable iD = allIDamageable[i];
+                        iD.Heal(curWand.repairAmount);
+                    }
+                }
+
+                curRepairDelay = repairDelay;
+            }
         }
     }
 
@@ -430,8 +445,11 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
     void DecreaseHP()
     {
-        curHp -= Time.deltaTime * decreaseHpPerTime;
-        PlayerUI.Instance.UpdateHPFill();
+        if (Dialogue.tutorialIndex >= 2)
+        {
+            curHp -= Time.deltaTime * decreaseHpPerTime;
+            PlayerUI.Instance.UpdateHPFill();
+        }
     }
 
     public bool CanUseRepair()

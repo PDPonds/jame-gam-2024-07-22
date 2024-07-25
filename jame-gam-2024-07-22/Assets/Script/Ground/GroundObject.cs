@@ -31,6 +31,8 @@ public class GroundObject : MonoBehaviour, IDamageable
 
     [SerializeField] GroundObjectState state;
 
+    [SerializeField] bool isDestroyOnStart;
+
     private void Awake()
     {
         groundMeshRen = visusal.GetComponent<MeshRenderer>();
@@ -39,7 +41,15 @@ public class GroundObject : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        ResetHP();
+        if (isDestroyOnStart)
+        {
+            curHp = 0;
+            Death();
+        }
+        else
+        {
+            ResetHP();
+        }
     }
 
     #region IDamageable
@@ -53,6 +63,13 @@ public class GroundObject : MonoBehaviour, IDamageable
     public void Death()
     {
         SwitchState(GroundObjectState.Disable);
+        if (Dialogue.tutorialIndex == 3)
+        {
+            Dialogue.tutorialIndex = 4;
+            PlayerUI.Instance.repairSkillBorder.SetActive(true);
+            PlayerUI.Instance.dashSkillBorder.SetActive(true);
+            Dialogue.Instance.StartTutorial();
+        }
     }
 
     public void Heal(float damage)
@@ -67,6 +84,12 @@ public class GroundObject : MonoBehaviour, IDamageable
             {
                 SwitchState(GroundObjectState.Enable);
                 SetupMat();
+
+                if (Dialogue.tutorialIndex == 4)
+                {
+                    Dialogue.tutorialIndex = 5;
+                }
+
             }
         }
     }
@@ -195,5 +218,14 @@ public class GroundObject : MonoBehaviour, IDamageable
     }
 
     #endregion
+
+    private void OnDrawGizmos()
+    {
+        if (isDestroyOnStart)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawSphere(transform.position, 0.25f);
+        }
+    }
 
 }

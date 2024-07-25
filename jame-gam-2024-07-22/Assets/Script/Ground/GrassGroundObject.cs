@@ -31,6 +31,13 @@ public class GrassGroundObject : MonoBehaviour, IDamageable
     {
         hasLife = false;
         SetupMat();
+        if (Dialogue.tutorialIndex == 3)
+        {
+            Dialogue.tutorialIndex = 4;
+            PlayerUI.Instance.repairSkillBorder.SetActive(true);
+            Dialogue.Instance.StartTutorial();
+        }
+
     }
 
     public void Heal(float amount)

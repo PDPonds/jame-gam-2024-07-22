@@ -48,8 +48,6 @@ public class EnemyController : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody>();
         anim = visual.GetComponent<Animator>();
         spriteRenderer = visual.GetComponent<SpriteRenderer>();
-
-        OnSpawn();
     }
 
     private void Update()

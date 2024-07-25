@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 7591798497351324367}
   - component: {fileID: 2383396468076533237}
   m_Layer: 3
-  m_Name: Skeleton
+  m_Name: Bat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

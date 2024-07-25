@@ -28,6 +28,7 @@ public class Pause : Singleton<Pause>
         PlayerManager.Instance.enabled = false;
 
         PlayerManager.Instance.rb.useGravity = false;
+        PlayerManager.Instance.rb.velocity = Vector3.zero;
 
         RangeSkillObject[] skillObject = FindObjectsOfType<RangeSkillObject>();
         if (skillObject.Length > 0)

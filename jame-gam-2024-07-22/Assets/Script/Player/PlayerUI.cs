@@ -7,15 +7,19 @@ using UnityEngine.UI;
 public class PlayerUI : Singleton<PlayerUI>
 {
     [Header("- HP")]
+    public GameObject hpBorder;
     [SerializeField] Image hpFill;
 
     [Header("- Decay")]
+    public GameObject decaySkillBorder;
     [SerializeField] Image decaySkillFill;
 
     [Header("- Repaire")]
+    public GameObject repairSkillBorder;
     [SerializeField] Image repaireSkillFill;
 
     [Header("- Dash")]
+    public GameObject dashSkillBorder;
     [SerializeField] Image dashFill;
 
     [Header("- Chest")]
@@ -61,6 +65,9 @@ public class PlayerUI : Singleton<PlayerUI>
 
     [Header("- Pause")]
     [SerializeField] GameObject pausePanel;
+    [Header("- Defeat")]
+    [SerializeField] GameObject defeatPanel;
+    [SerializeField] Button restartGame;
 
     private void Start()
     {
@@ -190,6 +197,11 @@ public class PlayerUI : Singleton<PlayerUI>
     public void HidePause()
     {
         pausePanel.SetActive(false);
+    }
+
+    public void ShowDefeat()
+    {
+        defeatPanel.SetActive(true);
     }
 
 }

@@ -18,6 +18,8 @@ public class Chest : MonoBehaviour, IDamageable
 
     float curHp;
 
+    bool isOpen;
+
     private void Awake()
     {
         spriteRenderer = visual.GetComponent<SpriteRenderer>();
@@ -39,6 +41,7 @@ public class Chest : MonoBehaviour, IDamageable
     public void Death()
     {
         PlayerUI.Instance.ShowSelectWandPanel(this);
+        isOpen = true;
     }
 
     public void ChangeSpriteToOpenAready()
@@ -53,10 +56,13 @@ public class Chest : MonoBehaviour, IDamageable
 
     public void Hit(float damage)
     {
-        curHp -= damage;
-        if (curHp <= 0)
+        if (!isOpen)
         {
-            Death();
+            curHp -= damage;
+            if (curHp <= 0)
+            {
+                Death();
+            }
         }
     }
 

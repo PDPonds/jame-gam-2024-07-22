@@ -14,6 +14,11 @@ public class GameManager : Singleton<GameManager>
 
     }
 
+    private void Start()
+    {
+        BrakeNav();
+    }
+
     public void BrakeNav()
     {
         nav.BuildNavMesh();

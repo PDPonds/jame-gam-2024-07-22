@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class Dialogue : Singleton<Dialogue>
 {
+    public static int tutorialIndex = 1;
+    public static int dialogIndex = 0;
+
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] Image tutorialImage;
     [SerializeField] TextMeshProUGUI text;
@@ -15,19 +18,9 @@ public class Dialogue : Singleton<Dialogue>
 
     [SerializeField] float textSpeed;
 
-    int tutorialIndex;
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            StartTutorial();
-        }
-    }
-
     public void StartTutorial()
     {
-        if (tutorialIndex < tutorialSlot.Length)
+        if (dialogIndex < tutorialSlot.Length)
         {
             text.text = string.Empty;
             dialoguePanel.SetActive(true);
@@ -38,7 +31,7 @@ public class Dialogue : Singleton<Dialogue>
 
     public void SpaceOrClickOnDialog()
     {
-        if (text.text != tutorialSlot[tutorialIndex].lines)
+        if (text.text != tutorialSlot[dialogIndex].lines)
         {
             EndLine();
         }
@@ -50,8 +43,8 @@ public class Dialogue : Singleton<Dialogue>
 
     IEnumerator TypeLine()
     {
-        tutorialImage.sprite = tutorialSlot[tutorialIndex].tutorialSprite;
-        foreach (char c in tutorialSlot[tutorialIndex].lines.ToCharArray())
+        tutorialImage.sprite = tutorialSlot[dialogIndex].tutorialSprite;
+        foreach (char c in tutorialSlot[dialogIndex].lines.ToCharArray())
         {
             text.text += c;
             yield return new WaitForSeconds(textSpeed);
@@ -61,15 +54,27 @@ public class Dialogue : Singleton<Dialogue>
     void EndLine()
     {
         StopAllCoroutines();
-        text.text = tutorialSlot[tutorialIndex].lines;
+        text.text = tutorialSlot[dialogIndex].lines;
     }
 
     void EndCurTutorial()
     {
-        tutorialIndex++;
+        dialogIndex++;
         text.text = string.Empty;
         Pause.Instance.UnPauseGame();
         dialoguePanel.SetActive(false);
+
+        if (tutorialIndex == 2)
+        {
+            tutorialIndex = 3;
+            PlayerUI.Instance.decaySkillBorder.SetActive(true);
+            StartTutorial();
+        }
+        else if (tutorialIndex == 3)
+        {
+            PlayerManager.Instance.skillIndicator.gameObject.SetActive(true);
+        }
+
     }
 
     public bool IsDialoguePanelOpen()
