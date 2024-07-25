@@ -9,9 +9,9 @@ public class DisableControllerTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             TutorialUIManager.Instance.HideControllerPanel();
-            if (Dialogue.tutorialIndex == 1)
+            if (Dialogue.Instance.tutorialIndex == 1)
             {
-                Dialogue.tutorialIndex = 2;
+                Dialogue.Instance.tutorialIndex = 2;
                 PlayerUI.Instance.hpBorder.SetActive(true);
                 Dialogue.Instance.StartTutorial();
             }

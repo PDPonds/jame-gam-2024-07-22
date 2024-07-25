@@ -65,11 +65,11 @@ public class GroundObject : MonoBehaviour, IDamageable
         SwitchState(GroundObjectState.Disable);
         PlayerManager.Instance.Shake();
 
-        if (Dialogue.tutorialIndex == 3)
+        if (Dialogue.Instance.tutorialIndex == 3)
         {
             PlayerUI.Instance.repairSkillBorder.SetActive(true);
             Dialogue.Instance.StartTutorial();
-            Dialogue.tutorialIndex = 4;
+            Dialogue.Instance.tutorialIndex = 4;
         }
     }
 
@@ -88,9 +88,9 @@ public class GroundObject : MonoBehaviour, IDamageable
                 SetupMat();
                 PlayerManager.Instance.Shake();
 
-                if (Dialogue.tutorialIndex == 4)
+                if (Dialogue.Instance.tutorialIndex == 4)
                 {
-                    Dialogue.tutorialIndex = 5;
+                    Dialogue.Instance.tutorialIndex = 5;
                 }
 
             }

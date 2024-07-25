@@ -128,7 +128,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
     public void Dash()
     {
-        if (Dialogue.tutorialIndex >= 4)
+        if (Dialogue.Instance.tutorialIndex >= 4)
         {
             if (curDashDelay <= 0)
             {
@@ -263,7 +263,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
     void MoveIndicator()
     {
-        if (Dialogue.tutorialIndex >= 3)
+        if (Dialogue.Instance.tutorialIndex >= 3)
         {
             if (GetWorldPosFormMouse(out Vector3 pos))
             {
@@ -329,7 +329,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
     public void DecayObject()
     {
-        if (Dialogue.tutorialIndex >= 3)
+        if (Dialogue.Instance.tutorialIndex >= 3)
         {
             if (curDecayDelay <= 0)
             {
@@ -361,7 +361,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
     public void RepairObject()
     {
-        if (Dialogue.tutorialIndex >= 4)
+        if (Dialogue.Instance.tutorialIndex >= 4)
         {
             if (CanUseRepair() && curRepairDelay <= 0)
             {
@@ -453,7 +453,7 @@ public class PlayerManager : Singleton<PlayerManager>, IDamageable
 
     void DecreaseHP()
     {
-        if (Dialogue.tutorialIndex >= 2)
+        if (Dialogue.Instance.tutorialIndex >= 2)
         {
             curHp -= Time.deltaTime * decreaseHpPerTime;
             PlayerUI.Instance.UpdateHPFill();

@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class Dialogue : Singleton<Dialogue>
 {
-    public static int tutorialIndex = 1;
-    public static int dialogIndex = 0;
+    public int tutorialIndex = 1;
+    public int dialogIndex = 0;
 
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] Image tutorialImage;
@@ -72,6 +72,7 @@ public class Dialogue : Singleton<Dialogue>
 
     IEnumerator TypeLine()
     {
+        tutorialImage.gameObject.SetActive(true);
         LeanTween.scale(tutorialImage.gameObject, Vector3.one, 0.25f).setEaseInOutCubic();
         tutorialImage.sprite = tutorialSlot[dialogIndex].tutorialSprite;
         foreach (char c in tutorialSlot[dialogIndex].lines.ToCharArray())
@@ -83,6 +84,7 @@ public class Dialogue : Singleton<Dialogue>
 
     IEnumerator TypeDoor()
     {
+        tutorialImage.gameObject.SetActive(false);
         LeanTween.scale(tutorialImage.gameObject, Vector3.zero, 0.25f).setEaseInOutCubic();
         foreach (char c in openDoorText.ToCharArray())
         {
