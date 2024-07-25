@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerUI : Singleton<PlayerUI>
@@ -67,10 +68,19 @@ public class PlayerUI : Singleton<PlayerUI>
     [SerializeField] GameObject pausePanel;
     [Header("- Defeat")]
     [SerializeField] GameObject defeatPanel;
-    [SerializeField] Button restartGame;
+    [SerializeField] GameObject victoryPanel;
+    [SerializeField] Button restartInDefeatGame;
+    [SerializeField] Button restartInVictoryGame;
+
+
+    [Header("- Door")]
+    [SerializeField] GameObject doorInfomation;
 
     private void Start()
     {
+        restartInDefeatGame.onClick.AddListener(RestartGame);
+        restartInVictoryGame.onClick.AddListener(RestartGame);
+
         cancleNewWand.onClick.AddListener(HideSelectWandPanel);
         UpdateCurWand();
     }
@@ -204,4 +214,23 @@ public class PlayerUI : Singleton<PlayerUI>
         defeatPanel.SetActive(true);
     }
 
+    void RestartGame()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void ShowDoorInfomation()
+    {
+        doorInfomation.SetActive(true);
+    }
+
+    public void HideDoorInfomation()
+    {
+        doorInfomation.SetActive(false);
+    }
+
+    public void ShowVictory()
+    {
+        victoryPanel.SetActive(true);
+    }
 }

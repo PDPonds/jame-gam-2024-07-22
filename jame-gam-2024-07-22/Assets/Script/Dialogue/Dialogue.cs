@@ -16,7 +16,11 @@ public class Dialogue : Singleton<Dialogue>
 
     [SerializeField] TutorialSlot[] tutorialSlot;
 
+    [SerializeField] string openDoorText;
+
     [SerializeField] float textSpeed;
+
+
 
     public void StartTutorial()
     {
@@ -29,22 +33,55 @@ public class Dialogue : Singleton<Dialogue>
         }
     }
 
+    public void StartDoor()
+    {
+        text.text = string.Empty;
+        dialoguePanel.SetActive(true);
+        Pause.Instance.PauseGame();
+        StartCoroutine(TypeDoor());
+    }
+
     public void SpaceOrClickOnDialog()
     {
-        if (text.text != tutorialSlot[dialogIndex].lines)
+        if (tutorialImage.gameObject.activeSelf)
         {
-            EndLine();
+            if (text.text != tutorialSlot[dialogIndex].lines)
+            {
+                EndLine();
+            }
+            else
+            {
+                EndCurTutorial();
+            }
         }
         else
         {
-            EndCurTutorial();
+            if (text.text != openDoorText)
+            {
+                EndLine();
+            }
+            else
+            {
+                EndDoor();
+            }
         }
     }
 
     IEnumerator TypeLine()
     {
+        tutorialImage.gameObject.SetActive(true);
         tutorialImage.sprite = tutorialSlot[dialogIndex].tutorialSprite;
         foreach (char c in tutorialSlot[dialogIndex].lines.ToCharArray())
+        {
+            text.text += c;
+            yield return new WaitForSeconds(textSpeed);
+        }
+    }
+
+    IEnumerator TypeDoor()
+    {
+        tutorialImage.gameObject.SetActive(false);
+        foreach (char c in openDoorText.ToCharArray())
         {
             text.text += c;
             yield return new WaitForSeconds(textSpeed);
@@ -75,6 +112,13 @@ public class Dialogue : Singleton<Dialogue>
             PlayerManager.Instance.skillIndicator.gameObject.SetActive(true);
         }
 
+    }
+
+    void EndDoor()
+    {
+        text.text = string.Empty;
+        Pause.Instance.UnPauseGame();
+        dialoguePanel.SetActive(false);
     }
 
     public bool IsDialoguePanelOpen()

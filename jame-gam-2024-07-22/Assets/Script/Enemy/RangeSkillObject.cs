@@ -35,6 +35,7 @@ public class RangeSkillObject : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerManager.Instance.Hit(skill.damage);
+            Destroy(gameObject);
         }
     }
 
